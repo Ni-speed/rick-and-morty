@@ -54,4 +54,23 @@ export const Theme = {
     mobile: 'screen and (max-width: 576px)',
     tablet: 'screen and (max-width: 768px) and (min-width: 577px)',
   },
+  typography: {
+    fontSizes: {
+      L: '27px',
+      M: '24px',
+      S: '21px',
+      XL: '30px',
+      XS: '39px',
+      XXL: '24px',
+    },
+    fontWeights: {
+      Bold: '700px',
+      Regular: '400px',
+    },
+    lineHeight: {
+      L: '36px',
+      M: '24px',
+      S: '16px',
+    },
+  },
 }

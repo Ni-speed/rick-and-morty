@@ -1,17 +1,16 @@
-import { Button } from '@/components/ui/button'
-import { BS } from '@/components/ui/button/Button.styled'
-import styled from 'styled-components'
+import { useGetCharacterQuery } from '@/services'
 
 export function App() {
+  const { data, isLoading } = useGetCharacterQuery()
+
+  console.log(useGetCharacterQuery())
+  if (isLoading) {
+    return <h1>Loading...</h1>
+  }
+
   return (
-    <>
-      <Button text={'asdfsdf'} />
-      <BS.SecondaryButton>Secondary</BS.SecondaryButton>
-      <StyleDiv>Hello</StyleDiv>
-    </>
+    <div>
+      <ul>{data?.results.map(character => <li key={character.id}>{character.name}</li>)}</ul>
+    </div>
   )
 }
-
-const StyleDiv = styled.div`
-  color: red;
-`

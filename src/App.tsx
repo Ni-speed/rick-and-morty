@@ -1,3 +1,5 @@
+import { Typography } from '@/components/ui'
+import { StyledTypography } from '@/components/ui/typography'
 import { useGetCharacterQuery } from '@/services'
 
 export function App() {
@@ -10,7 +12,16 @@ export function App() {
 
   return (
     <div>
-      <ul>{data?.results.map(character => <li key={character.id}>{character.name}</li>)}</ul>
+      <StyledTypography tag={'h1'} variant={'title'}>
+        The Rick and Morty
+      </StyledTypography>
+      <ul>
+        {data?.results.map(character => (
+          <li key={character.id}>
+            <Typography variant={'title'}>{character.name}</Typography>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

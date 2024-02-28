@@ -1,5 +1,5 @@
 import { baseApi } from '@/services'
-import { EpisodesResponse, SingleEpisode } from '@/services/episodes/types'
+import { Episode, EpisodesResponse } from '@/services/episodes/types'
 
 const episodesApi = baseApi.injectEndpoints({
   endpoints: build => ({
@@ -9,13 +9,22 @@ const episodesApi = baseApi.injectEndpoints({
         url: '/episode',
       }),
     }),
-    getMultipleEpisodes: build.query<SingleEpisode, { ids: string }>({
+    getMultipleEpisodes: build.query<Episode[], { ids: string }>({
       query: ({ ids }) => ({
         method: 'GET',
         url: `/episode/${ids}`,
       }),
+      transformResponse: async (response: Episode[]) => {
+        const data = await response
+
+        if (!Array.isArray(data)) {
+          return [data]
+        }
+
+        return data
+      },
     }),
-    getSingleEpisode: build.query<SingleEpisode[], { id: number }>({
+    getSingleEpisode: build.query<Episode, { id: number }>({
       query: ({ id }) => ({
         method: 'GET',
         url: `/episode/${id}`,

@@ -1,6 +1,6 @@
 export type CharactersResponse = {
   info: CharactersResponseInfo
-  results: CharactersResponseResults[]
+  results: SingleCharacter[]
 }
 export type CharactersResponseInfo = {
   count: number
@@ -16,7 +16,8 @@ export type CharactersResponseResultsLocation = {
   name: string
   url: string
 }
-export type CharactersResponseResults = {
+type Status = 'Alive' | 'Dead' | 'unknown'
+export type SingleCharacter = {
   created: string
   episode: string[]
   gender: string
@@ -26,7 +27,7 @@ export type CharactersResponseResults = {
   name: string
   origin: CharactersResponseResultsOrigin
   species: string
-  status: string
+  status: Status
   type: string
   url: string
 }

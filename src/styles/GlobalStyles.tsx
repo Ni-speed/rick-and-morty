@@ -2,6 +2,20 @@ import { Theme } from '@/styles/Theme.styled'
 import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyles = createGlobalStyle`
+    @font-face {
+        font-family: 'Segoe UI';
+        src: url('../../fonts/Segoe UI.ttf') format('truetype');
+        font-weight: 400;
+        font-display: swap;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Segoe UI';
+        src: url('../../fonts/Segoe UI Bold.ttf') format('truetype');
+        font-weight: 700;
+        font-display: swap;
+        font-style: normal;
+    }
     html {
         box-sizing: border-box;
         font-size: 100%;
@@ -14,9 +28,16 @@ export const GlobalStyles = createGlobalStyle`
     *::before,
     *::after {
         box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+    }
+    *::selection {
+        color: ${Theme.colors.warning.warning500};
+        background: rgb(32, 35, 41);
     }
 
-    input,
+        input,
     button,
     select,
     textarea,
@@ -28,16 +49,24 @@ export const GlobalStyles = createGlobalStyle`
         font-style: inherit;
         color: inherit;
     }
+    ul, 
+    ol {
+        list-style-type:  none;
+        padding: 0;
+        margin: 0;
+    }
 
     a:visited {
         color: inherit;
     }
+    a:hover {
+        color: ${Theme.colors.warning.warning500};
+    }
 
     body {
-        margin: 0;
-        padding: 0;
 
-        font-family: 'Roboto', sans-serif;
+
+        font-family: 'Segoe UI','Roboto', sans-serif;
         line-height: 24px;
         color: ${Theme.colors.light.light100};
 

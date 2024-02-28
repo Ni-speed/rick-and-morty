@@ -1,4 +1,4 @@
 export { Button } from './button'
-export { CharacterCard } from './characters/characterCard/CharacterCard'
-export { CharacterStatus } from './characters/characterStatus/CharacterStatus'
 export { Typography } from './typography'
+export { CharacterCard } from '@/components/ui/character/characterCard/CharacterCard'
+export { CharacterStatus } from '@/components/ui/character/characterStatus/CharacterStatus'

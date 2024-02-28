@@ -1,5 +1,6 @@
 import { FC } from 'react'
 
+import { Episodes } from '@/components/pages/episodes/Episodes'
 import { CharacterStatus, Typography } from '@/components/ui'
 import { SingleCharacter } from '@/services/characters'
 
@@ -40,9 +41,7 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
             <a href={'#'}>{character.location.name}</a>
           </Typography>
         </div>
-        {/*{episodes.map((episode, i) => (*/}
-        {/*  <div key={i}>{episode}</div>*/}
-        {/*))}*/}
+        <Episodes episodes={character.episode} />
       </ChrC.DescriptionContainer>
     </ChrC.CharacterContainer>
   )

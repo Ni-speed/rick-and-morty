@@ -1,6 +1,6 @@
 export type EpisodesResponse = {
   info: EpisodesResponseInfo
-  results: SingleEpisode[]
+  results: Episode[]
 }
 export type EpisodesResponseInfo = {
   count: number
@@ -8,12 +8,13 @@ export type EpisodesResponseInfo = {
   pages: number
   prev?: any
 }
-export type SingleEpisode = {
+type Url = string
+export type Episode = {
   air_date: string
   characters: string[]
   created: string
   episode: string
   id: number
   name: string
-  url: string
+  url: Url
 }

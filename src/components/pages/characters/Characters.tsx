@@ -5,8 +5,6 @@ import { useGetCharactersQuery } from '@/services/characters'
 export const Characters = () => {
   const { data: characters } = useGetCharactersQuery()
 
-  console.log(characters)
-
   // const episodes = characters.results.map()
   return (
     <section>

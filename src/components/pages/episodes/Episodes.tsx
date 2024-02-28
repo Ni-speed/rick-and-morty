@@ -1,10 +1,10 @@
 import { FC } from 'react'
 
-import { SingleCharacter } from '@/services/characters'
+import { Character } from '@/services/characters'
 import { useGetMultipleEpisodesQuery } from '@/services/episodes'
 
 type EpisodesProps = {
-  episodes: SingleCharacter['episode']
+  episodes: Character['episode']
 }
 export const Episodes: FC<EpisodesProps> = ({ episodes }) => {
   const { data } = useGetMultipleEpisodesQuery({

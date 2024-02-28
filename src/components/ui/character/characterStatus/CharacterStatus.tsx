@@ -2,11 +2,11 @@ import { FC } from 'react'
 
 import { Typography } from '@/components/ui'
 import { Status } from '@/components/ui/character/characterStatus/CharacterStatus.styled'
-import { SingleCharacter } from '@/services/characters/types'
+import { Character } from '@/services/characters/types'
 
 type CharacterStatusProps = {
-  species: SingleCharacter['species']
-  status: SingleCharacter['status']
+  species: Character['species']
+  status: Character['status']
 }
 
 export const CharacterStatus: FC<CharacterStatusProps> = ({ species, status }) => (

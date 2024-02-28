@@ -2,12 +2,12 @@ import { FC } from 'react'
 
 import { Episodes } from '@/components/pages/episodes/Episodes'
 import { CharacterStatus, Typography } from '@/components/ui'
-import { SingleCharacter } from '@/services/characters'
+import { Character } from '@/services/characters'
 
 import { ChrC } from './CharacterCard.styled'
 
 type CharacterCardProps = {
-  character: SingleCharacter
+  character: Character
 }
 
 export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
@@ -41,8 +41,8 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
             <a href={'#'}>{character.location.name}</a>
           </Typography>
         </div>
-        <Episodes episodes={character.episode} />
       </ChrC.DescriptionContainer>
+      <Episodes episodes={character.episode} />
     </ChrC.CharacterContainer>
   )
 }

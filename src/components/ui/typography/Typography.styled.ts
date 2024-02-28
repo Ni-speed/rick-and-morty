@@ -1,8 +1,9 @@
 import { Typography } from '@/components/ui'
+import { TypographyProps } from '@/components/ui/typography/Typography'
 import { Theme } from '@/styles/Theme.styled'
 import styled from 'styled-components'
 
-export const StyledTypography = styled(Typography)`
+export const StyledTypography = styled(Typography)<TypographyProps>`
   &.body1 {
     font-size: 16px;
     /* Другие стили для body1 */
@@ -14,7 +15,8 @@ export const StyledTypography = styled(Typography)`
   }
 
   &.h1 {
-    font-size: 24px;
+    font-size: 240px;
+    color: red;
     /* Другие стили для h1 */
   }
 

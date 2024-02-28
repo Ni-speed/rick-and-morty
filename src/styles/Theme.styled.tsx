@@ -64,8 +64,8 @@ export const Theme = {
       XXL: '24px',
     },
     fontWeights: {
-      Bold: '700px',
-      Regular: '400px',
+      Bold: '700',
+      Regular: '400',
     },
     lineHeight: {
       L: '36px',

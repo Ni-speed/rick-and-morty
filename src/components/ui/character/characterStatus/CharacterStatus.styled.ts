@@ -1,9 +1,9 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 export const Status = styled.span<{ $status: string }>`
   display: inline-block;
-  height: 0.5rem;
-  width: 0.5rem;
+  height: 1rem;
+  width: 1rem;
   margin-right: 0.375rem;
   border-radius: 50%;
   background: ${props => {

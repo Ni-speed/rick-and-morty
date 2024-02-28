@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import { Typography } from '@/components/ui'
 import { Status } from '@/components/ui/character/characterStatus/CharacterStatus.styled'
-import { Character } from '@/services/characters/types'
+import { Character } from '@/services/characters'
 
 type CharacterStatusProps = {
   species: Character['species']

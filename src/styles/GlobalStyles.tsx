@@ -9,6 +9,7 @@ export const GlobalStyles = createGlobalStyle`
         font-display: swap;
         font-style: normal;
     }
+
     @font-face {
         font-family: 'Segoe UI';
         src: url('../../fonts/Segoe UI Bold.ttf') format('truetype');
@@ -16,6 +17,7 @@ export const GlobalStyles = createGlobalStyle`
         font-display: swap;
         font-style: normal;
     }
+
     html {
         box-sizing: border-box;
         font-size: 100%;
@@ -32,12 +34,13 @@ export const GlobalStyles = createGlobalStyle`
         padding: 0;
         text-decoration: none;
     }
+
     *::selection {
         color: ${Theme.colors.warning.warning500};
         background: rgb(32, 35, 41);
     }
 
-        input,
+    input,
     button,
     select,
     textarea,
@@ -45,13 +48,14 @@ export const GlobalStyles = createGlobalStyle`
     option {
         font-family: inherit;
         font-size: inherit;
-        font-weight: inherit;
+        font-weight: ${Theme.typography.fontWeights.Bold};
         font-style: inherit;
         color: inherit;
     }
-    ul, 
+
+    ul,
     ol {
-        list-style-type:  none;
+        list-style-type: none;
         padding: 0;
         margin: 0;
     }
@@ -59,17 +63,15 @@ export const GlobalStyles = createGlobalStyle`
     a:visited {
         color: inherit;
     }
+
     a:hover {
         color: ${Theme.colors.warning.warning500};
     }
 
     body {
-
-
-        font-family: 'Segoe UI','Roboto', sans-serif;
+        font-family: 'Segoe UI', 'Roboto', sans-serif;
         line-height: 24px;
         color: ${Theme.colors.light.light100};
-
         background-color: ${Theme.colors.dark.dark900};
     }
 `

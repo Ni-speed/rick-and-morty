@@ -1,12 +1,25 @@
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 
-type TypographyProps = {
-  children: string
+export type TypographyProps = {
+  children: ReactNode
   tag?: 'div' | 'h1' | 'h2' | 'h3' | 'p' | 'span'
-  variant?: 'body1' | 'body2' | 'h1' | 'h2' | 'h3' | 'large' | 'title'
+  variant?:
+    | 'banner'
+    | 'body1'
+    | 'body2'
+    | 'caption'
+    | 'h1'
+    | 'h2'
+    | 'h3'
+    | 'large'
+    | 'link1'
+    | 'link2'
+    | 'overline'
+    | 'title1'
+    | 'title2'
 }
 export const Typography: FC<TypographyProps> = ({ children, tag = 'div', variant }) => {
   const Component = tag
 
-  return <Component className={variant}>{children}</Component>
+  return <Component>{children}</Component>
 }

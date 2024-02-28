@@ -12,10 +12,17 @@ const charactersApi = baseApi.injectEndpoints({
     getCharacters: build.query<CharactersResponse, null | void>({
       query: () => ({
         method: 'GET',
-        url: '/character',
+        url: '/character/?page=4',
+      }),
+    }),
+    searchCharacters: build.query<CharactersResponse, { name: string }>({
+      query: ({ name }) => ({
+        method: 'GET',
+        url: `/character/?name=${name}`,
       }),
     }),
   }),
 })
 
-export const { useGetCharacterQuery, useGetCharactersQuery } = charactersApi
+export const { useGetCharacterQuery, useGetCharactersQuery, useSearchCharactersQuery } =
+  charactersApi

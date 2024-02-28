@@ -3,10 +3,10 @@ import { Episode, EpisodesResponse } from '@/services/episodes/types'
 
 const episodesApi = baseApi.injectEndpoints({
   endpoints: build => ({
-    getEpisodes: build.query<EpisodesResponse, null | void>({
-      query: () => ({
+    getEpisodes: build.query<EpisodesResponse, number>({
+      query: page => ({
         method: 'GET',
-        url: '/episode',
+        url: `/episode?page=${page}`,
       }),
     }),
     getMultipleEpisodes: build.query<Episode[], { ids: string }>({
@@ -24,6 +24,12 @@ const episodesApi = baseApi.injectEndpoints({
         return data
       },
     }),
+    getNextPageEpisodes: build.query<EpisodesResponse, number>({
+      query: page => ({
+        method: 'GET',
+        url: `/episode?page=${page}`,
+      }),
+    }),
     getSingleEpisode: build.query<Episode, { id: number }>({
       query: ({ id }) => ({
         method: 'GET',
@@ -33,5 +39,9 @@ const episodesApi = baseApi.injectEndpoints({
   }),
 })
 
-export const { useGetEpisodesQuery, useGetMultipleEpisodesQuery, useGetSingleEpisodeQuery } =
-  episodesApi
+export const {
+  useGetEpisodesQuery,
+  useGetMultipleEpisodesQuery,
+  useGetNextPageEpisodesQuery,
+  useGetSingleEpisodeQuery,
+} = episodesApi

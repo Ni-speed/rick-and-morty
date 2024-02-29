@@ -1,9 +1,18 @@
 import { FC } from 'react'
 
-type PaginationProps = {}
-export const Pagination: FC<PaginationProps> = () => {
-  const handlePrev = () => {}
-  const handleNext = () => {}
+type PaginationProps = {
+  currentPage: number
+  onPageChange: (page: number) => void
+}
+export const Pagination: FC<PaginationProps> = ({ currentPage, onPageChange }) => {
+  const handlePrev = () => {
+    if (currentPage > 1) {
+      onPageChange(currentPage - 1)
+    }
+  }
+  const handleNext = () => {
+    onPageChange(currentPage + 1)
+  }
 
   return (
     <div>

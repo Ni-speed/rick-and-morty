@@ -8,7 +8,7 @@ import { useGetCharactersQuery, useSearchCharactersQuery } from '@/services/char
 
 export const Characters = () => {
   const [searchTerm, setSearchTerm] = useState('')
-  const [currentPage, setCurrentPage] = useState<null | number>(null)
+  const [currentPage, setCurrentPage] = useState<number>(1)
 
   const { data: characters, refetch } = useGetCharactersQuery(currentPage)
   const { data: searchResults } = useSearchCharactersQuery({ name: searchTerm })
@@ -16,6 +16,10 @@ export const Characters = () => {
   const handleSearch = (term: string) => {
     setSearchTerm(term)
 
+    refetch()
+  }
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page)
     refetch()
   }
 
@@ -37,7 +41,7 @@ export const Characters = () => {
           </li>
         ))}
       </UL>
-      <Pagination />
+      <Pagination currentPage={currentPage} onPageChange={handlePageChange} />
     </section>
   )
 }

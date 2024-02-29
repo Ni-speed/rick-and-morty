@@ -31,6 +31,6 @@ export const Button = styled.button`
   &:hover {
     background: ${Theme.colors.warning.warning500};
     color: ${Theme.colors.dark.dark900};
-    box-shadow: 0px -4px 20px rgba(274, 144, 0, 0.5);
+    box-shadow: 0 -4px 20px rgba(274, 144, 0, 0.5);
   }
 `

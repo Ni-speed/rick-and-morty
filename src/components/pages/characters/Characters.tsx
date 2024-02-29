@@ -2,16 +2,20 @@ import { useState } from 'react'
 
 import { UL } from '@/components/pages/characters/Characters.styled'
 import { CharacterCard, Typography } from '@/components/ui'
+import { Pagination } from '@/components/ui/pagination'
 import { Search } from '@/components/ui/search/Search'
 import { useGetCharactersQuery, useSearchCharactersQuery } from '@/services/characters'
 
 export const Characters = () => {
   const [searchTerm, setSearchTerm] = useState('')
-  const { data: characters, refetch } = useGetCharactersQuery()
+  const [currentPage, setCurrentPage] = useState<null | number>(null)
+
+  const { data: characters, refetch } = useGetCharactersQuery(currentPage)
   const { data: searchResults } = useSearchCharactersQuery({ name: searchTerm })
 
   const handleSearch = (term: string) => {
     setSearchTerm(term)
+
     refetch()
   }
 
@@ -33,6 +37,7 @@ export const Characters = () => {
           </li>
         ))}
       </UL>
+      <Pagination />
     </section>
   )
 }

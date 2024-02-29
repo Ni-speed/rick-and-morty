@@ -9,10 +9,13 @@ const charactersApi = baseApi.injectEndpoints({
         url: `/character/${id}`,
       }),
     }),
-    getCharacters: build.query<CharactersResponse, null | void>({
-      query: () => ({
+    getCharacters: build.query<CharactersResponse, number | undefined>({
+      query: page => ({
         method: 'GET',
-        url: '/character/?page=4',
+        params: {
+          page,
+        },
+        url: '/character',
       }),
     }),
     searchCharacters: build.query<CharactersResponse, { name: string }>({

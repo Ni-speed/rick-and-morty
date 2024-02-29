@@ -2,7 +2,7 @@ import { FC, ReactNode } from 'react'
 
 export type TypographyProps = {
   children: ReactNode
-  tag?: 'div' | 'h1' | 'h2' | 'h3' | 'p' | 'span'
+  tag?: 'div' | 'h1' | 'h2' | 'h3' | 'label' | 'p' | 'span'
   variant?:
     | 'banner'
     | 'body1'

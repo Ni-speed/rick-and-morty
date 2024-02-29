@@ -10,11 +10,15 @@ const charactersApi = baseApi.injectEndpoints({
       }),
     }),
     getCharacters: build.query<CharactersResponse, GetRequestType>({
-      query: ({ name, page }) => ({
+      query: ({ gender, name, page, species, status, type }) => ({
         method: 'GET',
         params: {
+          gender,
           name,
           page,
+          species,
+          status,
+          type,
         },
         url: '/character',
       }),

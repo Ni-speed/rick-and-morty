@@ -10,7 +10,7 @@ export const Characters = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [currentPage, setCurrentPage] = useState<number>(1)
 
-  const { data: characters, refetch } = useGetCharactersQuery(currentPage)
+  const { data: characters, isLoading, refetch } = useGetCharactersQuery({ page: currentPage })
   const { data: searchResults } = useSearchCharactersQuery({ name: searchTerm })
 
   const handleSearch = (term: string) => {
@@ -18,9 +18,13 @@ export const Characters = () => {
 
     refetch()
   }
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page)
-    refetch()
+  // const handlePageChange = (page: number) => {
+  //   setCurrentPage(page)
+  //   refetch()
+  // }
+
+  if (!characters || isLoading) {
+    return <div>Loading...</div>
   }
 
   return (
@@ -41,7 +45,7 @@ export const Characters = () => {
           </li>
         ))}
       </UL>
-      <Pagination currentPage={currentPage} onPageChange={handlePageChange} />
+      <Pagination count={characters.info.pages} onChange={setCurrentPage} page={currentPage} />
     </section>
   )
 }

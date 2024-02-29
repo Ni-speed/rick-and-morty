@@ -31,3 +31,13 @@ export type Character = {
   type: string
   url: string
 }
+
+export type GetRequestType = {
+  gender?: 'female' | 'genderless' | 'male' | 'unknown'
+  id?: number
+  name?: string
+  page?: number
+  species?: string
+  status?: 'alive' | 'dead' | 'unknown'
+  type?: string
+}

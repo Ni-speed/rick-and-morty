@@ -18,10 +18,6 @@ export const Characters = () => {
 
     refetch()
   }
-  // const handlePageChange = (page: number) => {
-  //   setCurrentPage(page)
-  //   refetch()
-  // }
 
   if (!characters || isLoading) {
     return <div>Loading...</div>
@@ -34,11 +30,6 @@ export const Characters = () => {
       </Typography>
       <Search onSearch={handleSearch} />
       <UL>
-        {/*{characters?.results.map(character => (*/}
-        {/*  <li key={character.id}>*/}
-        {/*    <CharacterCard character={character} />*/}
-        {/*  </li>*/}
-        {/*))}*/}
         {(searchTerm ? searchResults : characters)?.results.map(character => (
           <li key={character.id}>
             <CharacterCard character={character} />

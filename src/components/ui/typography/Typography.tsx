@@ -18,7 +18,7 @@ export type TypographyProps = {
     | 'title1'
     | 'title2'
 }
-export const Typography: FC<TypographyProps> = ({ children, tag = 'div', variant }) => {
+export const Typography: FC<TypographyProps> = ({ children, tag = 'div' }) => {
   const Component = tag
 
   return <Component>{children}</Component>

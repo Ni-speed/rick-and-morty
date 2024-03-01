@@ -1,20 +1,18 @@
 import { Theme } from '@/styles/Theme.styled'
 import { styled } from 'styled-components'
 
-const CharacterContainer = styled.article`
+const CharacterContainer = styled.div`
   width: 600px;
   height: 220px;
   display: flex;
   overflow: hidden;
   background: ${Theme.colors.dark.dark300};
   transition: transform 0.3s ease-in-out;
+  transform: translate(-50%, -50%) scale(1.02);
   border-radius: 10px;
   box-shadow:
     rgba(0, 0, 0, 0.1) 0 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0 2px 4px -1px;
-  &:hover {
-    transform: scale(1.02);
-  }
 `
 const Image = styled.img`
   width: 100%;

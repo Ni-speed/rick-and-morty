@@ -17,6 +17,7 @@ const Row = styled.tr`
   &:nth-child(even) {
     background-color: ${Theme.colors.accent.accent900};
   }
+  cursor: pointer;
 `
 
 const Cell = styled.td`

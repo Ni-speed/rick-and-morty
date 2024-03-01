@@ -18,7 +18,7 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
       <ChrC.DescriptionContainer>
         <div>
           <Typography tag={'h1'} variant={'title2'}>
-            <a href={``}>{character.name}</a>
+            {character.name}
           </Typography>
 
           <CharacterStatus species={character.species} status={character.status} />
@@ -29,7 +29,7 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
           </Typography>
 
           <Typography tag={'span'} variant={'body1'}>
-            <a href={'#'}>{character.location.name}</a>
+            {character.location.name}
           </Typography>
         </ChrC.Location>
         <div>
@@ -37,7 +37,7 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
             First seen in:
           </Typography>
           <Typography tag={'span'} variant={'body1'}>
-            <a href={'#'}>{character.location.name}</a>
+            {character.location.name}
           </Typography>
         </div>
       </ChrC.DescriptionContainer>

@@ -5,7 +5,6 @@ const NavBar = styled.div`
   flex-wrap: wrap;
   align-content: stretch;
   gap: 50px;
-  border: 1px solid red;
   padding: 15px;
   width: 25%;
 `

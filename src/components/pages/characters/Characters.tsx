@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { CharactersTable } from '@/components/pages'
 import { SC } from '@/components/pages/characters/Characters.styled'
-import { CharacterCard, SuperSelect, Typography } from '@/components/ui'
+import { SuperSelect, Typography } from '@/components/ui'
 import { Pagination } from '@/components/ui/pagination'
 import { Search } from '@/components/ui/search/Search'
 import { Button } from '@/components/ui/search/Search.styled'

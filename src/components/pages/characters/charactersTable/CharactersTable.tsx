@@ -1,5 +1,7 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 
+import { CharacterCard } from '@/components/ui'
+import { FullScreenPopup } from '@/components/ui/fullScreenPopup/FullScreenPopup'
 import { Character } from '@/services/characters'
 
 import { Table } from './CharactersTable.styled'
@@ -8,6 +10,15 @@ type CharacterTableProps = {
   characters: Character[]
 }
 export const CharactersTable: FC<CharacterTableProps> = ({ characters }) => {
+  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null)
+  const handleModalOpen = (character: Character) => {
+    setSelectedCharacter(character)
+  }
+
+  const handleModalClose = () => {
+    setSelectedCharacter(null)
+  }
+
   return (
     <>
       <Table.Wrapper>
@@ -22,7 +33,7 @@ export const CharactersTable: FC<CharacterTableProps> = ({ characters }) => {
         </thead>
         <tbody>
           {characters.map(character => (
-            <Table.Row key={character.id}>
+            <Table.Row key={character.id} onClick={() => handleModalOpen(character)}>
               <Table.Cell>{character.name}</Table.Cell>
               <Table.Cell>{character.status}</Table.Cell>
               <Table.Cell>{character.species}</Table.Cell>
@@ -32,6 +43,11 @@ export const CharactersTable: FC<CharacterTableProps> = ({ characters }) => {
           ))}
         </tbody>
       </Table.Wrapper>
+      {selectedCharacter && (
+        <FullScreenPopup setModalOpen={handleModalClose}>
+          <CharacterCard character={selectedCharacter} />
+        </FullScreenPopup>
+      )}
     </>
   )
 }

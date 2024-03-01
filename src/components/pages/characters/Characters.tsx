@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import { CharactersTable } from '@/components/pages'
 import { SC } from '@/components/pages/characters/Characters.styled'
 import { CharacterCard, SuperSelect, Typography } from '@/components/ui'
 import { Pagination } from '@/components/ui/pagination'
@@ -34,7 +35,6 @@ export const Characters = () => {
     species: speciesFilter,
     status: statusFilter,
   })
-  // const { data: searchResults } = useSearchCharactersQuery({ name: searchTerm })
 
   const handleSearch = (term: string) => {
     setSearchTerm(term)
@@ -54,40 +54,47 @@ export const Characters = () => {
   }
 
   return (
-    <section>
-      <Typography tag={'h1'} variant={'banner'}>
-        The Rick and Morty
-      </Typography>
-      <Search onSearch={handleSearch} />
-      <SC.Filter>
-        <SuperSelect
-          label={'Status:'}
-          onValueChange={setStatusFilter}
-          options={status}
-          value={statusFilter}
-        />
-        <SuperSelect
-          label={'Species:'}
-          onValueChange={setSpeciesFilter}
-          options={species}
-          value={speciesFilter}
-        />
-        <SuperSelect
-          label={'Gender:'}
-          onValueChange={setGenderFilter}
-          options={gender}
-          value={genderFilter}
-        />
-        <Button onClick={handleResetFilters}>Reset Filters</Button>
-      </SC.Filter>
-      <SC.UL>
-        {characters.results.map(character => (
-          <li key={character.id}>
-            <CharacterCard character={character} />
-          </li>
-        ))}
-      </SC.UL>
-      <Pagination count={characters.info.pages} onChange={setCurrentPage} page={currentPage} />
-    </section>
+    <SC.Section>
+      <SC.NavBar>
+        <Typography tag={'h1'} variant={'banner'}>
+          Characters
+        </Typography>
+        <Search onSearch={handleSearch} />
+        <SC.Filter>
+          <Button onClick={handleResetFilters}>Reset Filters</Button>
+          <SC.Select>
+            <SuperSelect
+              label={'Status:'}
+              onValueChange={setStatusFilter}
+              options={status}
+              value={statusFilter}
+            />
+            <SuperSelect
+              label={'Species:'}
+              onValueChange={setSpeciesFilter}
+              options={species}
+              value={speciesFilter}
+            />
+            <SuperSelect
+              label={'Gender:'}
+              onValueChange={setGenderFilter}
+              options={gender}
+              value={genderFilter}
+            />
+          </SC.Select>
+        </SC.Filter>
+        <div style={{ margin: '0 auto' }}>
+          <Pagination count={characters.info.pages} onChange={setCurrentPage} page={currentPage} />
+        </div>
+      </SC.NavBar>
+      {/*<SC.UL>*/}
+      {/*  {characters.results.map(character => (*/}
+      {/*    <li key={character.id}>*/}
+      {/*      <CharacterCard character={character} />*/}
+      {/*    </li>*/}
+      {/*  ))}*/}
+      {/*</SC.UL>*/}
+      <CharactersTable characters={characters.results} />
+    </SC.Section>
   )
 }

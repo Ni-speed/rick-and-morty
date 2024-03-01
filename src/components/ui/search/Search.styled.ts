@@ -3,17 +3,17 @@ import { styled } from 'styled-components'
 export const Container = styled.div`
   position: relative;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 20px;
-  width: 40%;
+  //width: 40%;
   padding: 6 12;
 `
 export const Input = styled.input`
   all: unset;
-  width: 40%;
+  width: 80%;
   border-radius: 10px;
   border: 2px solid ${Theme.colors.warning.warning500};
-  padding: 10px 15px;
+  padding: 10px;
   color: ${Theme.colors.warning.warning500};
   font-weight: ${Theme.typography.fontWeights.Bold};
   &:focus {

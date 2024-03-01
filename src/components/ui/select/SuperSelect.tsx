@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react'
 
 import { SelectArrow } from '@/assets'
-import * as Label from '@radix-ui/react-label'
+import { SSelect } from '@/components/ui/select/SuperSelect.styled'
 import * as Select from '@radix-ui/react-select'
 
 import { Typography } from '../typography'
@@ -28,7 +28,7 @@ export const SuperSelect: FC<SelectPropsType> = ({
   required,
   value,
 }) => (
-  <Label.Root>
+  <SSelect.LabelRoot>
     <Typography tag={'label'} variant={'body2'}>
       {label}
     </Typography>
@@ -39,23 +39,23 @@ export const SuperSelect: FC<SelectPropsType> = ({
       required={required}
       value={value}
     >
-      <Select.Trigger asChild tabIndex={1}>
+      <SSelect.SelectTrigger aria-label={label} asChild tabIndex={1}>
         <div>
           <Select.Value placeholder={placeholder} />
           <SelectArrow />
         </div>
-      </Select.Trigger>
+      </SSelect.SelectTrigger>
       <Select.Portal>
-        <Select.Content position={'popper'} sideOffset={-1}>
+        <SSelect.SelectContent position={'popper'} sideOffset={-1}>
           <Select.Viewport>
             {options.map(el => (
-              <Select.Item key={el.value} value={el.value}>
+              <SSelect.SelectItem key={el.value} value={el.value}>
                 <Select.ItemText>{el.value}</Select.ItemText>
-              </Select.Item>
+              </SSelect.SelectItem>
             ))}
           </Select.Viewport>
-        </Select.Content>
+        </SSelect.SelectContent>
       </Select.Portal>
     </Select.Root>
-  </Label.Root>
+  </SSelect.LabelRoot>
 )

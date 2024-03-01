@@ -19,12 +19,7 @@ export const Search: FC<SearchProps> = ({ onSearch }) => {
 
   return (
     <Container>
-      <Input
-        onChange={handleChange}
-        placeholder={'Search for characters'}
-        type={'text'}
-        value={searchTerm}
-      />
+      <Input onChange={handleChange} type={'text'} value={searchTerm} />
       <Button onClick={handleSearch}>Search</Button>
     </Container>
   )

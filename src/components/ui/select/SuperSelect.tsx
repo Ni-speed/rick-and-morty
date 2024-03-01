@@ -19,7 +19,6 @@ export type SelectPropsType = {
 }
 
 export const SuperSelect: FC<SelectPropsType> = ({
-  classname,
   defaultValue,
   disabled,
   label,
@@ -40,21 +39,17 @@ export const SuperSelect: FC<SelectPropsType> = ({
       required={required}
       value={value}
     >
-      <Select.Trigger
-        asChild
-        className={`${disabled ? s.triggerDisabled : s.trigger} ${classname}`}
-        tabIndex={1}
-      >
+      <Select.Trigger asChild tabIndex={1}>
         <div>
           <Select.Value placeholder={placeholder} />
-          <SelectArrow className={disabled ? s.iconDisabled : s.icon} />
+          <SelectArrow />
         </div>
       </Select.Trigger>
       <Select.Portal>
-        <Select.Content className={s.content} position={'popper'} sideOffset={-1}>
+        <Select.Content position={'popper'} sideOffset={-1}>
           <Select.Viewport>
             {options.map(el => (
-              <Select.Item className={s.item} key={el.value} value={el.value}>
+              <Select.Item key={el.value} value={el.value}>
                 <Select.ItemText>{el.value}</Select.ItemText>
               </Select.Item>
             ))}

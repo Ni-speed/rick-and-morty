@@ -1,18 +1,23 @@
 import { useState } from 'react'
 
-import { UL } from '@/components/pages/characters/Characters.styled'
-import { CharacterCard, Typography } from '@/components/ui'
+import { SC } from '@/components/pages/characters/Characters.styled'
+import { CharacterCard, SuperSelect, Typography } from '@/components/ui'
 import { Pagination } from '@/components/ui/pagination'
 import { Search } from '@/components/ui/search/Search'
-import { useGetCharactersQuery, useSearchCharactersQuery } from '@/services/characters'
+import { Button } from '@/components/ui/search/Search.styled'
+import {
+  GetRequestType,
+  useGetCharactersQuery,
+  useSearchCharactersQuery,
+} from '@/services/characters'
 
 export const Characters = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [currentPage, setCurrentPage] = useState<number>(1)
-  const [statusFilter, setStatusFilter] = useState<string | undefined>(undefined)
+  const [statusFilter, setStatusFilter] = useState<GetRequestType['status']>(undefined)
   const [speciesFilter, setSpeciesFilter] = useState<string | undefined>(undefined)
   const [typeFilter, setTypeFilter] = useState<string | undefined>(undefined)
-  const [genderFilter, setGenderFilter] = useState<string | undefined>(undefined)
+  const [genderFilter, setGenderFilter] = useState<GetRequestType['gender']>(undefined)
 
   const {
     data: characters,
@@ -32,6 +37,14 @@ export const Characters = () => {
 
     refetch()
   }
+  const handleResetFilters = () => {
+    setSearchTerm('')
+    setStatusFilter(undefined)
+    setSpeciesFilter(undefined)
+    setTypeFilter(undefined)
+    setGenderFilter(undefined)
+    setCurrentPage(1)
+  }
 
   if (!characters || isLoading) {
     return <div>Loading...</div>
@@ -43,38 +56,47 @@ export const Characters = () => {
         The Rick and Morty
       </Typography>
       <Search onSearch={handleSearch} />
-      <div>
-        <label>Status:</label>
-        <select
-          onChange={e => setStatusFilter(e.target.value || undefined)}
-          value={statusFilter || ''}
-        >
-          <option value={''}>All</option>
-          <option value={'alive'}>Alive</option>
-          <option value={'dead'}>Dead</option>
-          <option value={'unknown'}>Unknown</option>
-        </select>
-      </div>
-      <div>
-        <label>Species:</label>
-        <select
-          onChange={e => setSpeciesFilter(e.target.value || undefined)}
-          value={speciesFilter || ''}
-        >
-          <option value={''}>All</option>
-          <option value={'Human'}>Human</option>
-          <option value={'Alien'}>Alien</option>
-          <option value={'Robot'}>Robot</option>
-          {/* Add more options as needed */}
-        </select>
-      </div>
-      <UL>
+      <SC.Filter>
+        <SuperSelect
+          label={'Status:'}
+          onValueChange={setStatusFilter}
+          options={[
+            { label: 'Alive', value: 'alive' },
+            { label: 'Dead', value: 'dead' },
+            { label: 'Unknown', value: 'unknown' },
+          ]}
+          value={statusFilter}
+        />
+        <SuperSelect
+          label={'Species:'}
+          onValueChange={setSpeciesFilter}
+          options={[
+            { label: 'Human', value: 'Human' },
+            { label: 'Alien', value: 'Alien' },
+            { label: 'Robot', value: 'Robot' },
+          ]}
+          value={speciesFilter}
+        />
+        <SuperSelect
+          label={'Species:'}
+          onValueChange={setGenderFilter}
+          options={[
+            { label: 'Female', value: 'female' },
+            { label: 'Male', value: 'male' },
+            { label: 'Genderless', value: 'genderless ' },
+            { label: 'Unknown', value: 'unknown ' },
+          ]}
+          value={genderFilter}
+        />
+        <Button onClick={handleResetFilters}>Reset Filters</Button>
+      </SC.Filter>
+      <SC.UL>
         {(searchTerm ? searchResults : characters)?.results.map(character => (
           <li key={character.id}>
             <CharacterCard character={character} />
           </li>
         ))}
-      </UL>
+      </SC.UL>
       <Pagination count={characters.info.pages} onChange={setCurrentPage} page={currentPage} />
     </section>
   )

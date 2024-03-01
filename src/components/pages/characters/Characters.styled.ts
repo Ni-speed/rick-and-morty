@@ -1,6 +1,6 @@
 import { styled } from 'styled-components'
 
-export const UL = styled.ul`
+const UL = styled.ul`
   display: grid;
   gap: 20px;
   grid-template-columns: 1fr 1fr 1fr;
@@ -8,3 +8,12 @@ export const UL = styled.ul`
   flex-wrap: wrap;
   max-width: 1920px;
 `
+const Filter = styled.div`
+  display: flex;
+  gap: 40px;
+`
+
+export const SC = {
+  Filter,
+  UL,
+}

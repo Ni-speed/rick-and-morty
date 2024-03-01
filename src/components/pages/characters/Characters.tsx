@@ -5,32 +5,36 @@ import { CharacterCard, SuperSelect, Typography } from '@/components/ui'
 import { Pagination } from '@/components/ui/pagination'
 import { Search } from '@/components/ui/search/Search'
 import { Button } from '@/components/ui/search/Search.styled'
+import { useAppSelector } from '@/services'
+import { GetRequestType, useGetCharactersQuery } from '@/services/characters'
 import {
-  GetRequestType,
-  useGetCharactersQuery,
-  useSearchCharactersQuery,
-} from '@/services/characters'
+  selectorGender,
+  selectorSpecies,
+  selectorStatus,
+} from '@/services/characters/characterSelector'
 
 export const Characters = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [statusFilter, setStatusFilter] = useState<GetRequestType['status']>(undefined)
   const [speciesFilter, setSpeciesFilter] = useState<string | undefined>(undefined)
-  const [typeFilter, setTypeFilter] = useState<string | undefined>(undefined)
   const [genderFilter, setGenderFilter] = useState<GetRequestType['gender']>(undefined)
 
+  const gender = useAppSelector(selectorGender)
+  const species = useAppSelector(selectorSpecies)
+  const status = useAppSelector(selectorStatus)
   const {
     data: characters,
     isLoading,
     refetch,
   } = useGetCharactersQuery({
     gender: genderFilter,
+    name: searchTerm,
     page: currentPage,
     species: speciesFilter,
     status: statusFilter,
-    type: typeFilter,
   })
-  const { data: searchResults } = useSearchCharactersQuery({ name: searchTerm })
+  // const { data: searchResults } = useSearchCharactersQuery({ name: searchTerm })
 
   const handleSearch = (term: string) => {
     setSearchTerm(term)
@@ -41,7 +45,6 @@ export const Characters = () => {
     setSearchTerm('')
     setStatusFilter(undefined)
     setSpeciesFilter(undefined)
-    setTypeFilter(undefined)
     setGenderFilter(undefined)
     setCurrentPage(1)
   }
@@ -60,38 +63,25 @@ export const Characters = () => {
         <SuperSelect
           label={'Status:'}
           onValueChange={setStatusFilter}
-          options={[
-            { label: 'Alive', value: 'alive' },
-            { label: 'Dead', value: 'dead' },
-            { label: 'Unknown', value: 'unknown' },
-          ]}
+          options={status}
           value={statusFilter}
         />
         <SuperSelect
           label={'Species:'}
           onValueChange={setSpeciesFilter}
-          options={[
-            { label: 'Human', value: 'Human' },
-            { label: 'Alien', value: 'Alien' },
-            { label: 'Robot', value: 'Robot' },
-          ]}
+          options={species}
           value={speciesFilter}
         />
         <SuperSelect
-          label={'Species:'}
+          label={'Gender:'}
           onValueChange={setGenderFilter}
-          options={[
-            { label: 'Female', value: 'female' },
-            { label: 'Male', value: 'male' },
-            { label: 'Genderless', value: 'genderless ' },
-            { label: 'Unknown', value: 'unknown ' },
-          ]}
+          options={gender}
           value={genderFilter}
         />
         <Button onClick={handleResetFilters}>Reset Filters</Button>
       </SC.Filter>
       <SC.UL>
-        {(searchTerm ? searchResults : characters)?.results.map(character => (
+        {characters.results.map(character => (
           <li key={character.id}>
             <CharacterCard character={character} />
           </li>

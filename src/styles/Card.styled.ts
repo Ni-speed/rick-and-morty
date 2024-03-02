@@ -1,9 +1,7 @@
 import { Theme } from '@/styles/Theme.styled'
 import { styled } from 'styled-components'
 
-const Container = styled.div`
-  width: 600px;
-  height: 220px;
+const BaseContainer = styled.div`
   display: flex;
   overflow: hidden;
   background: ${Theme.colors.dark.dark300};
@@ -14,18 +12,17 @@ const Container = styled.div`
     rgba(0, 0, 0, 0.1) 0 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0 2px 4px -1px;
 `
-const EpisodeConteiner = styled.div`
+const CharacterContainer = styled(BaseContainer)`
+  width: 600px;
+  height: 220px;
+`
+const EpisodeContainer = styled(BaseContainer)`
   width: 1190px;
-  height: 700px;
-  display: flex;
-  overflow: hidden;
-  background: ${Theme.colors.dark.dark300};
-  transition: transform 0.3s ease-in-out;
-  transform: translate(-50%, -50%) scale(1.02);
-  border-radius: 10px;
-  box-shadow:
-    rgba(0, 0, 0, 0.1) 0 4px 6px -1px,
-    rgba(0, 0, 0, 0.06) 0 2px 4px -1px;
+  height: auto;
+  padding: 10px;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 `
 const Image = styled.img`
   width: 100%;
@@ -50,11 +47,25 @@ const Location = styled.div`
   flex-direction: column;
   justify-content: center;
 `
+const UL = styled.ul`
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  place-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+`
+const LI = styled.li`
+  list-style: none;
+`
 
 export const Card = {
-  Container,
+  CharacterContainer,
   Description,
-  EpisodeConteiner,
+  EpisodeContainer,
   Image,
+  LI,
   Location,
+  UL,
 }

@@ -8,6 +8,13 @@ const charactersApi = baseApi.injectEndpoints({
         method: 'GET',
         url: `/character/${id}`,
       }),
+      transformResponse: async (response: Character | Character[]) => {
+        if (!Array.isArray(response)) {
+          return [response]
+        }
+
+        return response
+      },
     }),
     getCharacters: build.query<CharactersResponse, GetRequestType>({
       query: ({ gender, name, page, species, status, type }) => ({

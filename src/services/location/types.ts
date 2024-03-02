@@ -1,10 +1,27 @@
-type Url = string
+export type LocationsResponse = {
+  info: LocationsResponseInfo
+  results: Location[]
+}
+export type LocationsResponseInfo = {
+  count: number
+  next: string
+  pages: number
+  prev?: any
+}
 export type Location = {
   created: string
   dimension: string
   id: number
   name: string
-  residents: Url[]
+  residents: string[]
   type: string
-  url: Url
+  url: string
+}
+export type GetLocationsType = {
+  dimension?: string
+  episode?: string
+  id?: number
+  name?: string
+  page?: number
+  type?: string
 }

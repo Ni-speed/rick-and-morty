@@ -25,11 +25,7 @@ export const Characters = () => {
   const gender = useAppSelector(selectorGender)
   const species = useAppSelector(selectorSpecies)
   const status = useAppSelector(selectorStatus)
-  const {
-    data: characters,
-    isLoading,
-    refetch,
-  } = useGetCharactersQuery({
+  const { data: characters, isLoading } = useGetCharactersQuery({
     gender: genderFilter,
     name: searchTerm,
     page: currentPage,
@@ -37,11 +33,11 @@ export const Characters = () => {
     status: statusFilter,
   })
 
+  console.log(gender)
   const handleSearch = (term: string) => {
     setSearchTerm(term)
-
-    refetch()
   }
+
   const handleResetFilters = () => {
     setSearchTerm('')
     setStatusFilter(undefined)
@@ -62,8 +58,8 @@ export const Characters = () => {
             Characters
           </Typography>
           <Search onSearch={handleSearch} />
+          <Button onClick={handleResetFilters}>Reset Filters</Button>
           <SC.Filter>
-            <Button onClick={handleResetFilters}>Reset Filters</Button>
             <SC.Select>
               <SuperSelect
                 onValueChange={setStatusFilter}

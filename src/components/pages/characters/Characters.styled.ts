@@ -21,8 +21,7 @@ const UL = styled.ul`
 `
 const Filter = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  justify-content: space-around;
 `
 const Select = styled.div`
   display: flex;

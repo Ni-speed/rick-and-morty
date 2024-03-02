@@ -7,6 +7,7 @@ const BaseContainer = styled.div`
   background: ${Theme.colors.dark.dark300};
   transition: transform 0.3s ease-in-out;
   transform: translate(-50%, -50%) scale(1.02);
+  overflow-y: auto;
   border-radius: 10px;
   box-shadow:
     rgba(0, 0, 0, 0.1) 0 4px 6px -1px,
@@ -23,6 +24,10 @@ const EpisodeContainer = styled(BaseContainer)`
   flex-direction: column;
   align-items: center;
   gap: 10px;
+`
+const LocationContainer = styled(EpisodeContainer)`
+  min-height: 700px;
+  overflow-y: auto;
 `
 const Image = styled.img`
   width: 100%;
@@ -67,5 +72,6 @@ export const Card = {
   Image,
   LI,
   Location,
+  LocationContainer,
   UL,
 }

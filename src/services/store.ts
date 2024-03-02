@@ -1,10 +1,10 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 
 import { baseApi } from '@/services/baseApi'
+import { characterReducer } from '@/services/characters'
 import { episodeReducer } from '@/services/episodes/slice'
+import { locationReducer } from '@/services/location/slice'
 import { configureStore } from '@reduxjs/toolkit'
-
-import { characterReducer } from './characters'
 
 export const store = configureStore({
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(baseApi.middleware),
@@ -12,6 +12,7 @@ export const store = configureStore({
     [baseApi.reducerPath]: baseApi.reducer,
     character: characterReducer,
     episode: episodeReducer,
+    location: locationReducer,
   },
 })
 

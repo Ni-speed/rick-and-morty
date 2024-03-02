@@ -44,7 +44,7 @@ export const SuperSelect: FC<SelectPropsType> = ({
         <SSelect.SelectContent position={'popper'} sideOffset={-1}>
           <Select.Viewport>
             {options.map(el => (
-              <SSelect.SelectItem key={el.value} value={el.value}>
+              <SSelect.SelectItem key={el.id} value={el.value || undefined}>
                 <Select.ItemText>{el.value}</Select.ItemText>
               </SSelect.SelectItem>
             ))}

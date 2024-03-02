@@ -4,6 +4,7 @@ import { EpisodesTable } from '@/components/pages/episodes/episodsTable/Episodes
 import { Pagination, Typography } from '@/components/ui'
 import { Search } from '@/components/ui/search'
 import { useGetEpisodesQuery } from '@/services/episodes'
+import { Container } from '@/styles'
 
 import { SC } from '../characters/Characters.styled'
 
@@ -24,18 +25,20 @@ export const Episodes = () => {
   }
 
   return (
-    <SC.Section>
-      <SC.NavBar>
-        <Typography tag={'h1'} variant={'banner'}>
-          Episodes
-        </Typography>
-        <Search initialValue={searchTerm} onSearch={handleSearch} />
-        <SC.Filter></SC.Filter>
-        <div style={{ margin: '0 auto' }}>
-          <Pagination count={episodes.info.pages} onChange={setCurrentPage} page={currentPage} />
-        </div>
-      </SC.NavBar>
-      <EpisodesTable episodes={episodes.results} />
-    </SC.Section>
+    <Container>
+      <SC.Section>
+        <SC.NavBar>
+          <Typography tag={'h1'} variant={'banner'}>
+            Episodes
+          </Typography>
+          <Search initialValue={searchTerm} onSearch={handleSearch} />
+          <SC.Filter></SC.Filter>
+          <div style={{ margin: '0 auto' }}>
+            <Pagination count={episodes.info.pages} onChange={setCurrentPage} page={currentPage} />
+          </div>
+        </SC.NavBar>
+        <EpisodesTable episodes={episodes.results} />
+      </SC.Section>
+    </Container>
   )
 }

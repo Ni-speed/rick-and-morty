@@ -10,7 +10,7 @@ type CharacterCardProps = {
 
 export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
   return (
-    <Card.Container>
+    <Card.CharacterContainer>
       <div>
         <Card.Image alt={character.name} src={character.image} />
       </div>
@@ -31,15 +31,16 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
             {character.location.name}
           </Typography>
         </Card.Location>
-        <div>
+
+        <Card.Location>
           <Typography tag={'span'} variant={'title1'}>
             First seen in:
           </Typography>
           <Typography tag={'span'} variant={'body1'}>
             {character.location.name}
           </Typography>
-        </div>
+        </Card.Location>
       </Card.Description>
-    </Card.Container>
+    </Card.CharacterContainer>
   )
 }

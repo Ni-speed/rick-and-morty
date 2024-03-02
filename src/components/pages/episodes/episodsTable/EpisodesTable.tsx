@@ -1,22 +1,21 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { FC, useState } from 'react'
 
-import { Table } from '@/components/pages/episodes/episodsTable/EpisodesTable.styled'
-import { useGetEpisodesQuery } from '@/services/episodes'
+import { Table } from '@/components/pages/characters/charactersTable'
+import { EpisodeCard } from '@/components/ui/episod'
+import { FullScreenPopup } from '@/components/ui/fullScreenPopup/FullScreenPopup'
+import { Episode } from '@/services/episodes'
 
-export const EpisodesTable = () => {
-  const [page, setPage] = useState(1)
-  const { data: episodes, isLoading } = useGetEpisodesQuery(page)
-
-  if (!episodes || isLoading) {
-    return <div>Loading...</div>
+type EpisodesTableProps = {
+  episodes: Episode[]
+}
+export const EpisodesTable: FC<EpisodesTableProps> = ({ episodes }) => {
+  const [selectedEpisode, setSelectedEpisode] = useState<Episode | null>(null)
+  const handleModalOpen = (episode: Episode) => {
+    setSelectedEpisode(episode)
   }
 
-  const handleNextPage = () => {
-    setPage(prevPage => prevPage + 1)
-  }
-  const handlePrevPage = () => {
-    setPage(prevPage => prevPage - 1)
+  const handleModalClose = () => {
+    setSelectedEpisode(null)
   }
 
   return (
@@ -30,8 +29,8 @@ export const EpisodesTable = () => {
           </Table.Row>
         </thead>
         <tbody>
-          {episodes.results.map(episode => (
-            <Table.Row key={episode.id}>
+          {episodes.map(episode => (
+            <Table.Row key={episode.id} onClick={() => handleModalOpen(episode)}>
               <Table.Cell>{episode.name}</Table.Cell>
               <Table.Cell>{episode.air_date}</Table.Cell>
               <Table.Cell>{episode.episode}</Table.Cell>
@@ -39,13 +38,11 @@ export const EpisodesTable = () => {
           ))}
         </tbody>
       </Table.Wrapper>
-      {/*<button onClick={handleNextPage}>Next</button>*/}
-      <Link onClick={handlePrevPage} to={`/episodes?page=${page - 1}`}>
-        Prev
-      </Link>
-      <Link onClick={handleNextPage} to={`/episodes?page=${page + 1}`}>
-        Next
-      </Link>
+      {selectedEpisode && (
+        <FullScreenPopup setModalOpen={handleModalClose}>
+          <EpisodeCard episode={selectedEpisode} />
+        </FullScreenPopup>
+      )}
     </>
   )
 }

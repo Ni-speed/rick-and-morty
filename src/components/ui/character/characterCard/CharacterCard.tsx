@@ -2,8 +2,7 @@ import { FC } from 'react'
 
 import { CharacterStatus, Typography } from '@/components/ui'
 import { Character } from '@/services/characters'
-
-import { ChrC } from './CharacterCard.styled'
+import { Card } from '@/styles'
 
 type CharacterCardProps = {
   character: Character
@@ -11,19 +10,19 @@ type CharacterCardProps = {
 
 export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
   return (
-    <ChrC.CharacterContainer>
+    <Card.Container>
       <div>
-        <ChrC.Image alt={character.name} src={character.image} />
+        <Card.Image alt={character.name} src={character.image} />
       </div>
-      <ChrC.DescriptionContainer>
+      <Card.Description>
         <div>
-          <Typography tag={'h1'} variant={'title2'}>
+          <Typography tag={'h2'} variant={'title2'}>
             {character.name}
           </Typography>
 
           <CharacterStatus species={character.species} status={character.status} />
         </div>
-        <ChrC.Location>
+        <Card.Location>
           <Typography tag={'span'} variant={'title1'}>
             Last known location:
           </Typography>
@@ -31,7 +30,7 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
           <Typography tag={'span'} variant={'body1'}>
             {character.location.name}
           </Typography>
-        </ChrC.Location>
+        </Card.Location>
         <div>
           <Typography tag={'span'} variant={'title1'}>
             First seen in:
@@ -40,8 +39,7 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
             {character.location.name}
           </Typography>
         </div>
-      </ChrC.DescriptionContainer>
-      {/*<Episodes episodes={character.episode} />*/}
-    </ChrC.CharacterContainer>
+      </Card.Description>
+    </Card.Container>
   )
 }

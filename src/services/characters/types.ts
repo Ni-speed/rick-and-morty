@@ -34,7 +34,7 @@ export type Character = {
 
 export type GetRequestType = {
   gender?: 'female' | 'genderless' | 'male' | 'unknown' | undefined
-  id?: number
+  id?: number | string[]
   name?: string
   page?: number
   species?: string

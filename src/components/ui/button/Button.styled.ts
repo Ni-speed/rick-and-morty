@@ -1,5 +1,5 @@
-import { Theme } from '@/styles/Theme.styled'
-import styled from 'styled-components'
+import { Theme } from '@/styles'
+import { styled } from 'styled-components'
 
 const BaseButton = styled.button`
   all: unset;

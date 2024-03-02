@@ -1,7 +1,7 @@
 import { Typography } from '@/components/ui'
 import { TypographyProps } from '@/components/ui/typography/Typography'
-import { Theme } from '@/styles/Theme.styled'
-import styled from 'styled-components'
+import { Theme } from '@/styles'
+import { styled } from 'styled-components'
 
 export const StyledTypography = styled(Typography)<TypographyProps>`
   &.body1 {
@@ -41,5 +41,6 @@ export const StyledTypography = styled(Typography)<TypographyProps>`
     color: red;
     /* Другие стили для заголовка */
   }
+  color: red;
   /* Добавьте стили для других вариантов типографики по аналогии */
 `

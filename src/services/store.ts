@@ -1,15 +1,17 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 
 import { baseApi } from '@/services/baseApi'
+import { episodeReducer } from '@/services/episodes/slice'
 import { configureStore } from '@reduxjs/toolkit'
 
-import { charackterReducer } from './characters'
+import { characterReducer } from './characters'
 
 export const store = configureStore({
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(baseApi.middleware),
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
-    character: charackterReducer,
+    character: characterReducer,
+    episode: episodeReducer,
   },
 })
 

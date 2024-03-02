@@ -3,8 +3,8 @@ import { Character, CharactersResponse, GetRequestType } from '@/services/charac
 
 const charactersApi = baseApi.injectEndpoints({
   endpoints: build => ({
-    getCharacter: build.query<Character, GetRequestType>({
-      query: id => ({
+    getCharacter: build.query<Character[], GetRequestType>({
+      query: ({ id }) => ({
         method: 'GET',
         url: `/character/${id}`,
       }),

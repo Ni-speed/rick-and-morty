@@ -1,7 +1,6 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
-import { Characters, StartPage } from '@/components/pages'
-import { EpisodesTable } from '@/components/pages/episodes/episodsTable/EpisodesTable'
+import { Characters, Episodes, StartPage } from '@/components/pages'
 
 const router = createBrowserRouter([
   {
@@ -17,7 +16,7 @@ const router = createBrowserRouter([
     path: '/locations',
   },
   {
-    element: <EpisodesTable />,
+    element: <Episodes />,
     path: '/episodes',
   },
 ])

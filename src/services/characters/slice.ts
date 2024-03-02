@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 export type SuperSelectOption = {
+  id: number
   label: string
   value: string
 }
@@ -14,20 +15,20 @@ type InitialStateType = {
 const initialState: InitialStateType = {
   superSelectOptions: {
     gender: [
-      { label: 'Female', value: 'Female' },
-      { label: 'Male', value: 'Male' },
-      { label: 'Genderless', value: 'Genderless ' },
-      { label: 'Unknown', value: 'Unknown ' },
+      { id: 1, label: 'Female', value: 'Female' },
+      { id: 2, label: 'Male', value: 'Male' },
+      { id: 3, label: 'Genderless', value: 'Genderless ' },
+      { id: 4, label: 'Unknown', value: 'Unknown ' },
     ],
     species: [
-      { label: 'Human', value: 'Human' },
-      { label: 'Alien', value: 'Alien' },
-      { label: 'Robot', value: 'Robot' },
+      { id: 1, label: 'Human', value: 'Human' },
+      { id: 2, label: 'Alien', value: 'Alien' },
+      { id: 3, label: 'Robot', value: 'Robot' },
     ],
     status: [
-      { label: 'Alive', value: 'Alive' },
-      { label: 'Dead', value: 'Dead' },
-      { label: 'Unknown', value: 'Unknown' },
+      { id: 1, label: 'Alive', value: 'Alive' },
+      { id: 2, label: 'Dead', value: 'Dead' },
+      { id: 3, label: 'Unknown', value: 'Unknown' },
     ],
   },
 }
@@ -35,30 +36,8 @@ const initialState: InitialStateType = {
 const slice = createSlice({
   initialState,
   name: 'charackter',
-  reducers: {
-    // updateGender(state, action: PayloadAction<SuperSelectOption>) {
-    //   state.superSelectOptions.gender = [
-    //     { label: action.payload.label, value: action.payload.value },
-    //   ]
-    // },
-    // updateSpecies(state, action: PayloadAction<SuperSelectOption>) {
-    //   state.superSelectOptions.species = [
-    //     { label: action.payload.label, value: action.payload.value },
-    //   ]
-    // },
-    // updateStatus(state, action: PayloadAction<SuperSelectOption>) {
-    //   state.superSelectOptions.status = [
-    //     { label: action.payload.label, value: action.payload.value },
-    //   ]
-    // },
-    // resetFilters(state) {
-    //   state.status = initialState.status;
-    //   state.species = initialState.species;
-    //   state.type = initialState.type;
-    //   state.gender = initialState.gender;
-    // },
-  },
+  reducers: {},
 })
 
 // export const { updateGender, updateSpecies, updateStatus } = slice.actions
-export const charackterReducer = slice.reducer
+export const characterReducer = slice.reducer

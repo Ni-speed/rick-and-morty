@@ -13,6 +13,7 @@ import {
   selectorSpecies,
   selectorStatus,
 } from '@/services/characters/characterSelector'
+import { Container } from '@/styles'
 
 export const Characters = () => {
   const [searchTerm, setSearchTerm] = useState('')
@@ -54,47 +55,53 @@ export const Characters = () => {
   }
 
   return (
-    <SC.Section>
-      <SC.NavBar>
-        <Typography tag={'h1'} variant={'banner'}>
-          Characters
-        </Typography>
-        <Search onSearch={handleSearch} />
-        <SC.Filter>
-          <Button onClick={handleResetFilters}>Reset Filters</Button>
-          <SC.Select>
-            <SuperSelect
-              label={'Status:'}
-              onValueChange={setStatusFilter}
-              options={status}
-              value={statusFilter}
+    <Container>
+      <SC.Section>
+        <SC.NavBar>
+          <Typography tag={'h1'} variant={'banner'}>
+            Characters
+          </Typography>
+          <Search onSearch={handleSearch} />
+          <SC.Filter>
+            <Button onClick={handleResetFilters}>Reset Filters</Button>
+            <SC.Select>
+              <SuperSelect
+                onValueChange={setStatusFilter}
+                options={status}
+                placeholder={'Status'}
+                value={statusFilter}
+              />
+              <SuperSelect
+                onValueChange={setSpeciesFilter}
+                options={species}
+                placeholder={'Species'}
+                value={speciesFilter}
+              />
+              <SuperSelect
+                onValueChange={setGenderFilter}
+                options={gender}
+                placeholder={'Gender'}
+                value={genderFilter}
+              />
+            </SC.Select>
+          </SC.Filter>
+          <div style={{ margin: '0 auto' }}>
+            <Pagination
+              count={characters.info.pages}
+              onChange={setCurrentPage}
+              page={currentPage}
             />
-            <SuperSelect
-              label={'Species:'}
-              onValueChange={setSpeciesFilter}
-              options={species}
-              value={speciesFilter}
-            />
-            <SuperSelect
-              label={'Gender:'}
-              onValueChange={setGenderFilter}
-              options={gender}
-              value={genderFilter}
-            />
-          </SC.Select>
-        </SC.Filter>
-        <div style={{ margin: '0 auto' }}>
-          <Pagination count={characters.info.pages} onChange={setCurrentPage} page={currentPage} />
-        </div>
-      </SC.NavBar>
-      {/*<SC.UL>*/}
-      {/*  {characters.results.map(character => (*/}
-      {/*    <li key={character.id}>*/}
-      {/*      <CharacterCard character={character} />*/}
-      {/*    </li>*/}
-      {/*  ))}*/}
-      {/*</SC.UL>*/}
-      <CharactersTable characters={characters.results} />
-    </SC.Section>
+          </div>
+        </SC.NavBar>
+        {/*<SC.UL>*/}
+        {/*  {characters.results.map(character => (*/}
+        {/*    <li key={character.id}>*/}
+        {/*      <CharacterCard character={character} />*/}
+        {/*    </li>*/}
+        {/*  ))}*/}
+        {/*</SC.UL>*/}
+        <CharactersTable characters={characters.results} />
+      </SC.Section>
+    </Container>
   )
 }

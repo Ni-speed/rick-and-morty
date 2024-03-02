@@ -18,3 +18,9 @@ export type Episode = {
   name: string
   url: Url
 }
+export type GetEpisodesType = {
+  episode?: string
+  id?: number
+  name?: string
+  page?: number
+}

@@ -4,8 +4,6 @@ import { SelectArrow } from '@/assets'
 import { SSelect } from '@/components/ui/select/SuperSelect.styled'
 import * as Select from '@radix-ui/react-select'
 
-import { Typography } from '../typography'
-
 export type SelectPropsType = {
   classname?: string
   defaultValue?: any
@@ -29,9 +27,6 @@ export const SuperSelect: FC<SelectPropsType> = ({
   value,
 }) => (
   <SSelect.LabelRoot>
-    <Typography tag={'label'} variant={'body2'}>
-      {label}
-    </Typography>
     <Select.Root
       defaultValue={defaultValue}
       disabled={disabled}

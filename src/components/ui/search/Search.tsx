@@ -3,11 +3,12 @@ import { ChangeEvent, FC, useState } from 'react'
 import { Button, Container, Input } from '@/components/ui/search/Search.styled'
 
 interface SearchProps {
+  initialValue?: string
   onSearch: (term: string) => void
 }
 
-export const Search: FC<SearchProps> = ({ onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState('')
+export const Search: FC<SearchProps> = ({ initialValue = '', onSearch }) => {
+  const [searchTerm, setSearchTerm] = useState(initialValue)
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value)

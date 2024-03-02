@@ -1,27 +1,41 @@
-import { FC } from 'react'
+import { useState } from 'react'
 
-import { Character } from '@/services/characters'
-import { useGetMultipleEpisodesQuery } from '@/services/episodes'
+import { EpisodesTable } from '@/components/pages/episodes/episodsTable/EpisodesTable'
+import { Pagination, Typography } from '@/components/ui'
+import { Search } from '@/components/ui/search'
+import { useGetEpisodesQuery } from '@/services/episodes'
 
-type EpisodesProps = {
-  episodes: Character['episode']
-}
-export const Episodes: FC<EpisodesProps> = ({ episodes }) => {
-  const { data } = useGetMultipleEpisodesQuery({
-    ids: episodes
-      .map(episodeLink => episodeLink.replace('https://rickandmortyapi.com/api/episode/', ''))
-      .join(','),
-  })
+import { SC } from '../characters/Characters.styled'
 
-  if (!data) {
+export const Episodes = () => {
+  const [searchTerm, setSearchTerm] = useState(localStorage.getItem('episodeName') || '')
+  const [currentPage, setCurrentPage] = useState<number>(1)
+
+  const { data: episodes, isLoading } = useGetEpisodesQuery({ name: searchTerm, page: currentPage })
+
+  const handleSearch = (term: string) => {
+    setSearchTerm(term)
+    localStorage.setItem('episodeName', term)
+    setCurrentPage(1)
+  }
+
+  if (!episodes || isLoading) {
     return <div>Loading...</div>
   }
 
   return (
-    <div>
-      {data.map(episode => (
-        <div key={episode.id}>{episode.name}</div>
-      ))}
-    </div>
+    <SC.Section>
+      <SC.NavBar>
+        <Typography tag={'h1'} variant={'banner'}>
+          Episodes
+        </Typography>
+        <Search initialValue={searchTerm} onSearch={handleSearch} />
+        <SC.Filter></SC.Filter>
+        <div style={{ margin: '0 auto' }}>
+          <Pagination count={episodes.info.pages} onChange={setCurrentPage} page={currentPage} />
+        </div>
+      </SC.NavBar>
+      <EpisodesTable episodes={episodes.results} />
+    </SC.Section>
   )
 }

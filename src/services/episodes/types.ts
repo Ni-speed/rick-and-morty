@@ -1,13 +1,10 @@
+import { ResponseInfo } from '@/services/characters'
+
 export type EpisodesResponse = {
-  info: EpisodesResponseInfo
+  info: ResponseInfo
   results: Episode[]
 }
-export type EpisodesResponseInfo = {
-  count: number
-  next: string
-  pages: number
-  prev?: any
-}
+
 type Url = string
 export type Episode = {
   air_date: string

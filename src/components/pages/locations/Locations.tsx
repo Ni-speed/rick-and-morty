@@ -7,8 +7,12 @@ import { Search } from '@/components/ui/search/Search'
 import { Button } from '@/components/ui/search/Search.styled'
 import { STypography } from '@/components/ui/typography'
 import { useAppDispatch, useAppSelector } from '@/services'
-import { Location, useGetLocationsQuery } from '@/services/location'
-import { selectorDimensions, selectorTypes } from '@/services/location/locationSelector'
+import {
+  Location,
+  selectorDimensions,
+  selectorTypes,
+  useGetLocationsQuery,
+} from '@/services/location'
 import { getAllLocations } from '@/services/location/slice'
 import { Container } from '@/styles'
 import { Pages } from '@/styles/Pages.styled'

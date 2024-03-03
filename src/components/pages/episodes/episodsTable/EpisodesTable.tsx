@@ -1,9 +1,9 @@
 import { FC, useState } from 'react'
 
-import { Table } from '@/components/pages/characters/charactersTable'
 import { EpisodeCard } from '@/components/ui/episod'
 import { FullScreenPopup } from '@/components/ui/fullScreenPopup/FullScreenPopup'
 import { Episode } from '@/services/episodes'
+import { Table } from '@/styles/StyledTable.styled'
 
 type EpisodesTableProps = {
   episodes: Episode[]

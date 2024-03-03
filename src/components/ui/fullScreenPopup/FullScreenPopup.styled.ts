@@ -34,7 +34,7 @@ const Content = styled.div`
   height: 100%;
 `
 
-export const SModal = {
+export const Modal = {
   Background,
   Card,
   Content,

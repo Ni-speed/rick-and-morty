@@ -58,5 +58,6 @@ export const GlobalStyles = createGlobalStyle`
         line-height: 24px;
         color: ${Theme.colors.light.light100};
         background-color: ${Theme.colors.dark.dark900};
+        overflow: hidden;
     }
 `

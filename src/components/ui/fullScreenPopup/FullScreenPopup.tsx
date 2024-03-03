@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react'
 
 import { Portal } from '@/common'
-import { SModal } from '@/components/ui/fullScreenPopup/FullScreenPopup.styled'
+import { Modal } from '@/components/ui/fullScreenPopup/FullScreenPopup.styled'
 
 type FullScreenPopupProps = {
   children: ReactNode
@@ -10,11 +10,11 @@ type FullScreenPopupProps = {
 export const FullScreenPopup: FC<FullScreenPopupProps> = ({ children, setModalOpen }) => {
   return (
     <Portal>
-      <SModal.Background onClick={() => setModalOpen(false)}>
-        <SModal.Card>
-          <SModal.Content>{children}</SModal.Content>
-        </SModal.Card>
-      </SModal.Background>
+      <Modal.Background onClick={() => setModalOpen(false)}>
+        <Modal.Card>
+          <Modal.Content>{children}</Modal.Content>
+        </Modal.Card>
+      </Modal.Background>
     </Portal>
   )
 }

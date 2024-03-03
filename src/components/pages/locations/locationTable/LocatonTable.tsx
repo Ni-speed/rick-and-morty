@@ -1,9 +1,9 @@
 import { FC, useState } from 'react'
 
-import { Table } from '@/components/pages/characters/charactersTable'
 import { FullScreenPopup } from '@/components/ui/fullScreenPopup/FullScreenPopup'
 import { LocationCard } from '@/components/ui/location/LocationCard'
 import { Location } from '@/services/location'
+import { Table } from '@/styles/StyledTable.styled'
 
 type EpisodesTableProps = {
   locations: Location[]

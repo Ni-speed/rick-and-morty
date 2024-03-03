@@ -3,8 +3,7 @@ import { FC, useState } from 'react'
 import { CharacterCard } from '@/components/ui'
 import { FullScreenPopup } from '@/components/ui/fullScreenPopup/FullScreenPopup'
 import { Character } from '@/services/characters'
-
-import { Table } from './CharactersTable.styled'
+import { Table } from '@/styles/StyledTable.styled'
 
 type CharacterTableProps = {
   characters: Character[]

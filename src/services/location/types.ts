@@ -1,13 +1,10 @@
+import { ResponseInfo } from '@/services/characters'
+
 export type LocationsResponse = {
-  info: LocationsResponseInfo
+  info: ResponseInfo
   results: Location[]
 }
-export type LocationsResponseInfo = {
-  count: number
-  next: string
-  pages: number
-  prev?: any
-}
+
 export type Location = {
   created: string
   dimension: string

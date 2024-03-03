@@ -2,8 +2,8 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 
 import { baseApi } from '@/services/baseApi'
 import { characterReducer } from '@/services/characters'
-import { episodeReducer } from '@/services/episodes/slice'
-import { locationReducer } from '@/services/location/slice'
+import { episodeReducer } from '@/services/episodes'
+import { locationReducer } from '@/services/location'
 import { configureStore } from '@reduxjs/toolkit'
 
 export const store = configureStore({

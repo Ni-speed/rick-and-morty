@@ -1,2 +1,2 @@
 export * from './CharactersTable'
-export * from './CharactersTable.styled'
+export * from '../../../../styles/StyledTable.styled'

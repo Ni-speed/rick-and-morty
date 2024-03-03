@@ -62,6 +62,7 @@ export const Theme = {
       XL: '30px',
       XS: '39px',
       XXL: '24px',
+      XXXL: '60px',
     },
     fontWeights: {
       Bold: '700',

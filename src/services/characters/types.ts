@@ -1,8 +1,8 @@
 export type CharactersResponse = {
-  info: CharactersResponseInfo
+  info: ResponseInfo
   results: Character[]
 }
-export type CharactersResponseInfo = {
+export type ResponseInfo = {
   count: number
   next: string
   pages: number

@@ -1,13 +1,13 @@
-import { Link } from 'react-router-dom'
+import { SPage } from '@/components/pages/startPage/StartPage.style'
 
 export const StartPage = () => {
   return (
-    <div>
+    <SPage.Container>
       <div>
-        <Link to={'/characters'}>Character</Link>
-        <Link to={'/locations'}>Location</Link>
-        <Link to={'/episodes'}>Episode</Link>
+        <SPage.StyledLink to={'/characters'}>Character</SPage.StyledLink>
+        <SPage.StyledLink to={'/locations'}>Location</SPage.StyledLink>
+        <SPage.StyledLink to={'/episodes'}>Episode</SPage.StyledLink>
       </div>
-    </div>
+    </SPage.Container>
   )
 }

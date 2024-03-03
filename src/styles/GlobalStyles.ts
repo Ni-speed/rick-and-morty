@@ -44,7 +44,7 @@ export const GlobalStyles = createGlobalStyle`
         padding: 0;
         margin: 0;
     }
-
+    a:link,
     a:visited {
         color: inherit;
     }

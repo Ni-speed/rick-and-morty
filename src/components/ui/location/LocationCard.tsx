@@ -19,7 +19,6 @@ export const LocationCard: FC<EpisodeCardProps> = ({ location }) => {
   if (!characters || isLoading) {
     return <h1>Loading...</h1>
   }
-  console.log(location)
 
   return (
     <Card.LocationContainer>

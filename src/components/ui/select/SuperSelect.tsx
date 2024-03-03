@@ -42,13 +42,13 @@ export const SuperSelect: FC<SelectPropsType> = ({
       </SSelect.SelectTrigger>
       <Select.Portal>
         <SSelect.SelectContent position={'popper'} sideOffset={-1}>
-          <Select.Viewport>
+          <SSelect.SelectViewport>
             {options.map(el => (
               <SSelect.SelectItem key={el.id} value={el.value || undefined}>
                 <Select.ItemText>{el.value}</Select.ItemText>
               </SSelect.SelectItem>
             ))}
-          </Select.Viewport>
+          </SSelect.SelectViewport>
         </SSelect.SelectContent>
       </Select.Portal>
     </Select.Root>

@@ -1,4 +1,5 @@
 export { Card } from './Card.styled'
 export { Container } from './Container.styled'
 export { GlobalStyles } from './GlobalStyles'
+export { Pages } from './Pages.styled'
 export { Theme } from './Theme.styled'

@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
 import { CharactersTable } from '@/components/pages'
-import { SC } from '@/components/pages/characters/Characters.styled'
 import { SuperSelect, Typography } from '@/components/ui'
 import { Pagination } from '@/components/ui/pagination'
 import { Search } from '@/components/ui/search/Search'
@@ -14,6 +13,7 @@ import {
   selectorStatus,
 } from '@/services/characters/characterSelector'
 import { Container } from '@/styles'
+import { Pages } from '@/styles/Pages.styled'
 
 export const Characters = () => {
   const [searchTerm, setSearchTerm] = useState('')
@@ -52,15 +52,15 @@ export const Characters = () => {
 
   return (
     <Container>
-      <SC.Section>
-        <SC.NavBar>
+      <Pages.Section>
+        <Pages.NavBar>
           <Typography tag={'h1'} variant={'banner'}>
             Characters
           </Typography>
           <Search onSearch={handleSearch} />
           <Button onClick={handleResetFilters}>Reset Filters</Button>
-          <SC.Filter>
-            <SC.Select>
+          <Pages.Filter>
+            <Pages.Select>
               <SuperSelect
                 onValueChange={setStatusFilter}
                 options={status}
@@ -79,8 +79,8 @@ export const Characters = () => {
                 placeholder={'Gender'}
                 value={genderFilter}
               />
-            </SC.Select>
-          </SC.Filter>
+            </Pages.Select>
+          </Pages.Filter>
           <div style={{ margin: '0 auto' }}>
             <Pagination
               count={characters.info.pages}
@@ -88,16 +88,16 @@ export const Characters = () => {
               page={currentPage}
             />
           </div>
-        </SC.NavBar>
-        {/*<SC.UL>*/}
+        </Pages.NavBar>
+        {/*<Pages.UL>*/}
         {/*  {characters.results.map(character => (*/}
         {/*    <li key={character.id}>*/}
         {/*      <CharacterCard character={character} />*/}
         {/*    </li>*/}
         {/*  ))}*/}
-        {/*</SC.UL>*/}
+        {/*</Pages.UL>*/}
         <CharactersTable characters={characters.results} />
-      </SC.Section>
+      </Pages.Section>
     </Container>
   )
 }

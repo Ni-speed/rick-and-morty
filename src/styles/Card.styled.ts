@@ -3,7 +3,6 @@ import { styled } from 'styled-components'
 
 const BaseContainer = styled.div`
   display: flex;
-  overflow: hidden;
   background: ${Theme.colors.dark.dark300};
   transition: transform 0.3s ease-in-out;
   transform: translate(-50%, -50%) scale(1.02);
@@ -16,6 +15,7 @@ const BaseContainer = styled.div`
 const CharacterContainer = styled(BaseContainer)`
   width: 600px;
   height: 220px;
+  overflow: hidden;
 `
 const EpisodeContainer = styled(BaseContainer)`
   width: 1190px;
@@ -26,8 +26,9 @@ const EpisodeContainer = styled(BaseContainer)`
   gap: 10px;
 `
 const LocationContainer = styled(EpisodeContainer)`
-  min-height: 700px;
-  overflow-y: auto;
+  max-height: 700px;
+  overflow-y: auto !important;
+  border: 1px solid red;
 `
 const Image = styled.img`
   width: 100%;

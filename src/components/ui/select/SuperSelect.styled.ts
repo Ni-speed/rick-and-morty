@@ -40,6 +40,7 @@ const SelectContent = styled(Select.Content)`
   width: var(--radix-select-trigger-width);
   border: 2px solid ${Theme.colors.warning.warning500};
   border-radius: 0 0 10px 10px;
+  background-color: ${Theme.colors.dark.dark900};
 `
 const SelectItem = styled(Select.Item)`
   cursor: pointer;
@@ -53,10 +54,15 @@ const SelectItem = styled(Select.Item)`
     background-color: ${Theme.colors.dark.dark900};
   }
 `
+const SelectViewport = styled(Select.Viewport)`
+  max-height: 200px;
+  overflow-y: auto;
+`
 
 export const SSelect = {
   LabelRoot,
   SelectContent,
   SelectItem,
   SelectTrigger,
+  SelectViewport,
 }

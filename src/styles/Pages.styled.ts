@@ -21,14 +21,16 @@ const UL = styled.ul`
 `
 const Filter = styled.div`
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-between;
 `
 const Select = styled.div`
   display: flex;
   justify-content: space-between;
 `
 
-export const SC = {
+export const Pages = {
   Filter,
   NavBar,
   Section,

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 
-import { SC } from '@/components/pages/characters/Characters.styled'
 import { LocationsTable } from '@/components/pages/lovations/locationTable'
 import { SuperSelect, Typography } from '@/components/ui'
 import { Pagination } from '@/components/ui/pagination'
@@ -11,18 +10,34 @@ import { Location, useGetLocationsQuery } from '@/services/location'
 import { selectorDimensions, selectorTypes } from '@/services/location/locationSelector'
 import { getAllLocations } from '@/services/location/slice'
 import { Container } from '@/styles'
+import { Pages } from '@/styles/Pages.styled'
 
 export const Locations = () => {
-  const [searchName, setSearchName] = useState('')
-  const [currentPage, setCurrentPage] = useState<number>(1)
-  const [typeFilter, setTypeFilter] = useState<Location['type']>('')
-  const [dimensionsFilter, setDimensionsFilter] = useState<Location['dimension']>('')
+  const [searchName, setSearchName] = useState(localStorage.getItem('locationName') || '')
+  // const [currentPage, setCurrentPage] = useState<number>(1)
+  const [currentPage, setCurrentPage] = useState(() => {
+    const storedPage = parseInt(localStorage.getItem('currentPage') || '', 10)
+
+    return isNaN(storedPage) ? 1 : storedPage
+  })
+  const [typeFilter, setTypeFilter] = useState<Location['type']>(
+    localStorage.getItem('typeFilter') || ''
+  )
+  const [dimensionsFilter, setDimensionsFilter] = useState<Location['dimension']>(
+    localStorage.getItem('dimensionsFilter') || ''
+  )
 
   const dispatch = useAppDispatch()
 
   useEffect(() => {
     dispatch(getAllLocations())
   }, [dispatch])
+
+  useEffect(() => {
+    localStorage.setItem('currentPage', String(currentPage))
+    localStorage.setItem('typeFilter', typeFilter)
+    localStorage.setItem('dimensionsFilter', dimensionsFilter)
+  }, [currentPage, typeFilter, dimensionsFilter])
 
   const types = useAppSelector(selectorTypes)
   const dimensions = useAppSelector(selectorDimensions)
@@ -34,8 +49,10 @@ export const Locations = () => {
     type: typeFilter,
   })
 
-  const handleSearch = (term: string) => {
-    setSearchName(term)
+  const handleSearch = (locationName: string) => {
+    setSearchName(locationName)
+    localStorage.setItem('locationName', locationName)
+    setCurrentPage(1)
   }
   const handleResetFilters = () => {
     setSearchName('')
@@ -50,16 +67,16 @@ export const Locations = () => {
 
   return (
     <Container>
-      <SC.Section>
-        <SC.NavBar>
+      <Pages.Section>
+        <Pages.NavBar>
           <div style={{ margin: '0 auto' }}>
             <Typography tag={'h1'} variant={'banner'}>
               Locations
             </Typography>
           </div>
           <Search onSearch={handleSearch} />
-          <Button onClick={handleResetFilters}>Reset Filters</Button>
-          <SC.Filter>
+          <Pages.Filter>
+            <Button onClick={handleResetFilters}>Reset Filters</Button>
             <SuperSelect
               onValueChange={setTypeFilter}
               options={types}
@@ -72,13 +89,13 @@ export const Locations = () => {
               placeholder={'Dimensions'}
               value={dimensionsFilter}
             />
-          </SC.Filter>
+          </Pages.Filter>
           <div style={{ margin: '0 auto' }}>
             <Pagination count={locations.info.pages} onChange={setCurrentPage} page={currentPage} />
           </div>
-        </SC.NavBar>
+        </Pages.NavBar>
         <LocationsTable locations={locations.results} />
-      </SC.Section>
+      </Pages.Section>
     </Container>
   )
 }

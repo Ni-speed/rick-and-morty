@@ -14,7 +14,6 @@ import { Pages } from '@/styles/Pages.styled'
 
 export const Locations = () => {
   const [searchName, setSearchName] = useState(localStorage.getItem('locationName') || '')
-  // const [currentPage, setCurrentPage] = useState<number>(1)
   const [currentPage, setCurrentPage] = useState(() => {
     const storedPage = parseInt(localStorage.getItem('currentPage') || '', 10)
 

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { CharactersTable } from '@/components/pages'
 import { SuperSelect, Typography } from '@/components/ui'
@@ -16,8 +16,12 @@ import { Container } from '@/styles'
 import { Pages } from '@/styles/Pages.styled'
 
 export const Characters = () => {
-  const [searchTerm, setSearchTerm] = useState('')
-  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [searchLocation, setSearchLocation] = useState(localStorage.getItem('characterName') || '')
+  const [currentPage, setCurrentPage] = useState(() => {
+    const storedPage = parseInt(localStorage.getItem('currentPage') || '', 10)
+
+    return isNaN(storedPage) ? 1 : storedPage
+  })
   const [statusFilter, setStatusFilter] = useState<GetRequestType['status']>(undefined)
   const [speciesFilter, setSpeciesFilter] = useState<string | undefined>(undefined)
   const [genderFilter, setGenderFilter] = useState<GetRequestType['gender']>(undefined)
@@ -25,21 +29,27 @@ export const Characters = () => {
   const gender = useAppSelector(selectorGender)
   const species = useAppSelector(selectorSpecies)
   const status = useAppSelector(selectorStatus)
+
   const { data: characters, isLoading } = useGetCharactersQuery({
     gender: genderFilter,
-    name: searchTerm,
+    name: searchLocation,
     page: currentPage,
     species: speciesFilter,
     status: statusFilter,
   })
 
-  console.log(gender)
-  const handleSearch = (term: string) => {
-    setSearchTerm(term)
+  useEffect(() => {
+    localStorage.setItem('currentPage', String(currentPage))
+  }, [currentPage])
+
+  const handleSearch = (characterName: string) => {
+    setSearchLocation(characterName)
+    localStorage.setItem('characterName', characterName)
+    setCurrentPage(1)
   }
 
   const handleResetFilters = () => {
-    setSearchTerm('')
+    setSearchLocation('')
     setStatusFilter(undefined)
     setSpeciesFilter(undefined)
     setGenderFilter(undefined)
@@ -89,13 +99,7 @@ export const Characters = () => {
             />
           </div>
         </Pages.NavBar>
-        {/*<Pages.UL>*/}
-        {/*  {characters.results.map(character => (*/}
-        {/*    <li key={character.id}>*/}
-        {/*      <CharacterCard character={character} />*/}
-        {/*    </li>*/}
-        {/*  ))}*/}
-        {/*</Pages.UL>*/}
+
         <CharactersTable characters={characters.results} />
       </Pages.Section>
     </Container>

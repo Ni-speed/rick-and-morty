@@ -13,7 +13,7 @@ const BaseContainer = styled.div`
     rgba(0, 0, 0, 0.06) 0 2px 4px -1px;
 `
 const CharacterContainer = styled(BaseContainer)`
-  width: 600px;
+  width: 500px;
   height: 220px;
   overflow: hidden;
 `
@@ -28,7 +28,6 @@ const EpisodeContainer = styled(BaseContainer)`
 const LocationContainer = styled(EpisodeContainer)`
   max-height: 700px;
   overflow-y: auto !important;
-  border: 1px solid red;
 `
 const Image = styled.img`
   width: 100%;

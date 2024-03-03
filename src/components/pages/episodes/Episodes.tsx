@@ -1,8 +1,9 @@
 import { useState } from 'react'
 
 import { EpisodesTable } from '@/components/pages/episodes/episodsTable/EpisodesTable'
-import { Pagination, Typography } from '@/components/ui'
+import { Pagination } from '@/components/ui'
 import { Search } from '@/components/ui/search'
+import { STypography } from '@/components/ui/typography'
 import { useGetEpisodesQuery } from '@/services/episodes'
 import { Container, Pages } from '@/styles'
 
@@ -26,9 +27,7 @@ export const Episodes = () => {
     <Container>
       <Pages.Section>
         <Pages.NavBar>
-          <Typography tag={'h1'} variant={'banner'}>
-            Episodes
-          </Typography>
+          <STypography.H1>Episodes</STypography.H1>
           <Search initialValue={searchTerm} onSearch={handleSearch} />
           <Pages.Filter></Pages.Filter>
           <div style={{ margin: '0 auto' }}>

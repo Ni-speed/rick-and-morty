@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 import { Characters, Episodes, StartPage } from '@/components/pages'
-import { Locations } from '@/components/pages/lovations/Locations'
+import { Locations } from '@/components/pages/locations/Locations'
 
 const router = createBrowserRouter([
   {

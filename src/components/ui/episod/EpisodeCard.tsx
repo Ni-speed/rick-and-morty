@@ -1,6 +1,7 @@
 import { FC } from 'react'
 
-import { Typography } from '@/components/ui'
+import { CharacterCard } from '@/components/ui'
+import { STypography } from '@/components/ui/typography'
 import { useGetCharacterQuery } from '@/services/characters'
 import { Episode } from '@/services/episodes'
 import { Card } from '@/styles'
@@ -21,20 +22,16 @@ export const EpisodeCard: FC<EpisodeCardProps> = ({ episode }) => {
 
   return (
     <Card.EpisodeContainer>
-      <Typography tag={'h2'} variant={'body1'}>
-        Release date: {episode.air_date}
-      </Typography>
-      <Typography tag={'h2'} variant={'title2'}>
+      <STypography.H2>Release date: {episode.air_date}</STypography.H2>
+      <STypography.H2>
         {episode.episode} - {episode.name}
-      </Typography>
-      <Typography tag={'h2'} variant={'title2'}>
-        Characters:
-      </Typography>
+      </STypography.H2>
+      <STypography.H2>Characters:</STypography.H2>
 
       <Card.UL>
-        {characters.map(character => (
-          <Card.LI key={character.id}>{character.name}</Card.LI>
-        ))}
+        {characters.map(character => {
+          return <CharacterCard $transform character={character} key={character.id} />
+        })}
       </Card.UL>
     </Card.EpisodeContainer>
   )

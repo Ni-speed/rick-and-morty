@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 
 import { CharactersTable } from '@/components/pages'
-import { SuperSelect, Typography } from '@/components/ui'
+import { SuperSelect } from '@/components/ui'
 import { Pagination } from '@/components/ui/pagination'
 import { Search } from '@/components/ui/search/Search'
 import { Button } from '@/components/ui/search/Search.styled'
+import { STypography } from '@/components/ui/typography'
 import { useAppSelector } from '@/services'
 import { GetRequestType, useGetCharactersQuery } from '@/services/characters'
 import {
@@ -64,9 +65,7 @@ export const Characters = () => {
     <Container>
       <Pages.Section>
         <Pages.NavBar>
-          <Typography tag={'h1'} variant={'banner'}>
-            Characters
-          </Typography>
+          <STypography.H1>Characters</STypography.H1>
           <Search onSearch={handleSearch} />
           <Button onClick={handleResetFilters}>Reset Filters</Button>
           <Pages.Filter>

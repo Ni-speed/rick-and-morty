@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 
-import { LocationsTable } from '@/components/pages/lovations/locationTable'
-import { SuperSelect, Typography } from '@/components/ui'
+import { LocationsTable } from '@/components/pages/locations/locationTable'
+import { SuperSelect } from '@/components/ui'
 import { Pagination } from '@/components/ui/pagination'
 import { Search } from '@/components/ui/search/Search'
 import { Button } from '@/components/ui/search/Search.styled'
+import { STypography } from '@/components/ui/typography'
 import { useAppDispatch, useAppSelector } from '@/services'
 import { Location, useGetLocationsQuery } from '@/services/location'
 import { selectorDimensions, selectorTypes } from '@/services/location/locationSelector'
@@ -69,9 +70,7 @@ export const Locations = () => {
       <Pages.Section>
         <Pages.NavBar>
           <div style={{ margin: '0 auto' }}>
-            <Typography tag={'h1'} variant={'banner'}>
-              Locations
-            </Typography>
+            <STypography.H1>Locations</STypography.H1>
           </div>
           <Search onSearch={handleSearch} />
           <Pages.Filter>

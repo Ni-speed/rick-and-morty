@@ -1,6 +1,7 @@
 import { FC } from 'react'
 
-import { Typography } from '@/components/ui'
+import { CharacterCard } from '@/components/ui'
+import { STypography } from '@/components/ui/typography'
 import { useGetCharacterQuery } from '@/services/characters'
 import { Location } from '@/services/location'
 import { Card } from '@/styles'
@@ -22,31 +23,22 @@ export const LocationCard: FC<EpisodeCardProps> = ({ location }) => {
 
   return (
     <Card.LocationContainer>
-      <Typography tag={'div'} variant={'title2'}>
+      <STypography.H2>
         {location.type} - {location.name}
-      </Typography>
-      <Typography tag={'div'} variant={'title2'}>
-        Dimension : {location.dimension}
-      </Typography>
+      </STypography.H2>
+      <STypography.H2>Dimension : {location.dimension}</STypography.H2>
       {location.residents.length ? (
-        <Typography tag={'div'} variant={'title2'}>
-          Residents:
-        </Typography>
+        <Card.ResidentsDescription>
+          <STypography.H2>Residents:</STypography.H2>
+          <Card.UL>
+            {characters.map(character => {
+              return <CharacterCard $transform character={character} key={character.id} />
+            })}
+          </Card.UL>
+        </Card.ResidentsDescription>
       ) : (
-        <Typography tag={'h2'} variant={'title2'}>
-          No Residents
-        </Typography>
+        <STypography.H3>No Residents</STypography.H3>
       )}
-      <Card.UL>
-        {characters.map(character => {
-          return <Card.LI key={character.id}>{character.name}</Card.LI>
-        })}
-      </Card.UL>
-      {/*<Card.UL>*/}
-      {/*  {characters.map(character => {*/}
-      {/*    return <CharacterCard character={character} key={character.id} />*/}
-      {/*  })}*/}
-      {/*</Card.UL>*/}
     </Card.LocationContainer>
   )
 }

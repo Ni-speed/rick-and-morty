@@ -1,44 +1,36 @@
 import { FC } from 'react'
 
-import { CharacterStatus, Typography } from '@/components/ui'
+import { CharacterStatus } from '@/components/ui'
+import { STypography } from '@/components/ui/typography'
 import { Character } from '@/services/characters'
 import { Card } from '@/styles'
 
 type CharacterCardProps = {
+  $transform?: boolean
   character: Character
 }
 
-export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
+export const CharacterCard: FC<CharacterCardProps> = ({ $transform, character }) => {
   return (
-    <Card.CharacterContainer>
+    <Card.CharacterContainer $transform={$transform}>
       <div>
         <Card.Image alt={character.name} src={character.image} />
       </div>
       <Card.Description>
         <div>
-          <Typography tag={'h2'} variant={'title2'}>
-            {character.name}
-          </Typography>
+          <STypography.H2>{character.name}</STypography.H2>
 
           <CharacterStatus species={character.species} status={character.status} />
         </div>
         <Card.Location>
-          <Typography tag={'span'} variant={'title1'}>
-            Last known location:
-          </Typography>
+          <STypography.SpanText>Last known location:</STypography.SpanText>
 
-          <Typography tag={'span'} variant={'body1'}>
-            {character.location.name}
-          </Typography>
+          <STypography.H3>{character.location.name}</STypography.H3>
         </Card.Location>
 
         <Card.Location>
-          <Typography tag={'span'} variant={'title1'}>
-            First seen in:
-          </Typography>
-          <Typography tag={'span'} variant={'body1'}>
-            {character.location.name}
-          </Typography>
+          <STypography.SpanText>First seen in:</STypography.SpanText>
+          <STypography.H3>{character.location.name}</STypography.H3>
         </Card.Location>
       </Card.Description>
     </Card.CharacterContainer>

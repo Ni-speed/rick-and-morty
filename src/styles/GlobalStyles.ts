@@ -2,21 +2,6 @@ import { Theme } from '@/styles/Theme.styled'
 import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyles = createGlobalStyle`
-    //@font-face {
-    //    font-family: 'Segoe UI';
-    //    src: url('../../fonts/Segoe UI.ttf') format('truetype');
-    //    font-weight: 400;
-    //    font-display: swap;
-    //    font-style: normal;
-    //}
-    //
-    //@font-face {
-    //    font-family: 'Segoe UI';
-    //    src: url('../../fonts/Segoe UI Bold.ttf') format('truetype');
-    //    font-weight: 700;
-    //    font-display: swap;
-    //    font-style: normal;
-    //}
 
     html {
         box-sizing: border-box;

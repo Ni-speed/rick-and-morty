@@ -41,7 +41,6 @@ export const LocationsTable: FC<EpisodesTableProps> = ({ locations }) => {
       {selectedLocation && (
         <FullScreenPopup setModalOpen={handleModalClose}>
           <LocationCard location={selectedLocation} />
-          {/*<EpisodeCard episode={selectedEpisode} />*/}
         </FullScreenPopup>
       )}
     </>

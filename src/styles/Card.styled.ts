@@ -12,22 +12,23 @@ const BaseContainer = styled.div`
     rgba(0, 0, 0, 0.1) 0 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0 2px 4px -1px;
 `
-const CharacterContainer = styled(BaseContainer)`
+const CharacterContainer = styled(BaseContainer)<{ $transform?: boolean }>`
   width: 500px;
   height: 220px;
   overflow: hidden;
+  transform: ${props => (props.$transform ? 'none' : 'translate(-50%, -50%)')};
 `
 const EpisodeContainer = styled(BaseContainer)`
   width: 1190px;
-  height: auto;
+  max-height: 700px;
   padding: 10px;
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  overflow-y: auto;
 `
 const LocationContainer = styled(EpisodeContainer)`
-  max-height: 700px;
-  overflow-y: auto !important;
+  overflow-y: auto;
 `
 const Image = styled.img`
   width: 100%;
@@ -55,14 +56,21 @@ const Location = styled.div`
 const UL = styled.ul`
   display: grid;
   gap: 20px;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   place-items: center;
   flex-wrap: wrap;
   width: 100%;
   height: 100%;
+  transform: none;
 `
 const LI = styled.li`
   list-style: none;
+`
+const ResidentsDescription = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 `
 
 export const Card = {
@@ -73,5 +81,6 @@ export const Card = {
   LI,
   Location,
   LocationContainer,
+  ResidentsDescription,
   UL,
 }

@@ -1,46 +1,32 @@
-import { Typography } from '@/components/ui'
-import { TypographyProps } from '@/components/ui/typography/Typography'
 import { Theme } from '@/styles'
 import { styled } from 'styled-components'
 
-export const StyledTypography = styled(Typography)<TypographyProps>`
-  &.body1 {
-    font-size: 16px;
-    /* Другие стили для body1 */
-  }
-
-  &.body2 {
-    font-size: 14px;
-    /* Другие стили для body2 */
-  }
-
-  &.h1 {
-    font-size: 240px;
-    color: red;
-    /* Другие стили для h1 */
-  }
-
-  &.h2 {
-    font-size: 20px;
-    /* Другие стили для h2 */
-  }
-
-  &.h3 {
-    font-size: 18px;
-    /* Другие стили для h3 */
-  }
-
-  &.large {
-    font-size: 28px;
-    /* Другие стили для большого текста */
-  }
-
-  &.title {
-    font-size: 5.625rem;
-    font-weight: ${Theme.typography.fontWeights.Bold};
-    color: red;
-    /* Другие стили для заголовка */
-  }
-  color: red;
-  /* Добавьте стили для других вариантов типографики по аналогии */
+const H1 = styled.h1`
+  font-size: 4.5rem;
+  font-weight: ${Theme.typography.fontWeights.Bold};
+  padding: 15px;
+  margin: 0 auto;
 `
+const H2 = styled.h2`
+  font-size: 1.5rem;
+`
+const H3 = styled.h3`
+  font-size: 18px;
+  font-weight: ${Theme.typography.fontWeights.Regular};
+`
+const Span = styled.span`
+  text-transform: capitalize;
+  font-weight: ${Theme.typography.fontWeights.Medium};
+`
+const SpanText = styled.span`
+  color: ${Theme.colors.dark.dark100};
+  font-weight: ${Theme.typography.fontWeights.Medium};
+`
+
+export const STypography = {
+  H1,
+  H2,
+  H3,
+  Span,
+  SpanText,
+}

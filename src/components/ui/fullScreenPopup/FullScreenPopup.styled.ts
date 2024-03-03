@@ -21,10 +21,6 @@ const Background = styled.div`
 const Card = styled.div`
   position: relative;
 
-  //width: 1190px;
-  //height: 720px;
-
-  //background: #771010 no-repeat center;
   background-size: cover;
   border: none;
   border-radius: 10px;

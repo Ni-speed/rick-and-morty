@@ -24,10 +24,20 @@ export const Characters = () => {
 
     return isNaN(storedPage) ? 1 : storedPage
   })
-  const [statusFilter, setStatusFilter] = useState<GetRequestType['status']>(undefined)
-  const [speciesFilter, setSpeciesFilter] = useState<string | undefined>(undefined)
-  const [genderFilter, setGenderFilter] = useState<GetRequestType['gender']>(undefined)
+  // const [statusFilter, setStatusFilter] = useState<GetRequestType['status']>(undefined)
+  // const [speciesFilter, setSpeciesFilter] = useState<string | undefined>(undefined)
+  // const [genderFilter, setGenderFilter] = useState<GetRequestType['gender']>(undefined)
+  const [statusFilter, setStatusFilter] = useState<GetRequestType['status'] | undefined>(
+    localStorage.getItem('statusFilter') as GetRequestType['status']
+  )
+  const [speciesFilter, setSpeciesFilter] = useState<string | undefined>(() => {
+    const storedValue = localStorage.getItem('speciesFilter')
 
+    return storedValue !== null ? storedValue : undefined
+  })
+  const [genderFilter, setGenderFilter] = useState<GetRequestType['gender'] | undefined>(
+    localStorage.getItem('genderFilter') as GetRequestType['gender']
+  )
   const gender = useAppSelector(selectorGender)
   const species = useAppSelector(selectorSpecies)
   const status = useAppSelector(selectorStatus)
@@ -42,7 +52,10 @@ export const Characters = () => {
 
   useEffect(() => {
     localStorage.setItem('currentPage', String(currentPage))
-  }, [currentPage])
+    localStorage.setItem('statusFilter', statusFilter || '')
+    localStorage.setItem('speciesFilter', speciesFilter || '')
+    localStorage.setItem('genderFilter', genderFilter || '')
+  }, [currentPage, statusFilter, speciesFilter, genderFilter])
 
   const handleSearch = (characterName: string) => {
     setSearchLocation(characterName)

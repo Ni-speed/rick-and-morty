@@ -4,8 +4,7 @@ import { EpisodesTable } from '@/components/pages/episodes/episodsTable/Episodes
 import { Pagination, Typography } from '@/components/ui'
 import { Search } from '@/components/ui/search'
 import { useGetEpisodesQuery } from '@/services/episodes'
-import { Container } from '@/styles'
-import { Pages } from '@/styles'
+import { Container, Pages } from '@/styles'
 
 export const Episodes = () => {
   const [searchTerm, setSearchTerm] = useState(localStorage.getItem('episodeName') || '')

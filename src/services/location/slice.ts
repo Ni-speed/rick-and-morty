@@ -2,7 +2,7 @@ import { SuperSelectOption } from '@/services/characters'
 import { Location, LocationsResponse } from '@/services/location/types'
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-type LocationsState = {
+export type LocationsState = {
   error: null | string
   locations: Location[]
   status: 'failed' | 'idle' | 'loading' | 'succeeded'

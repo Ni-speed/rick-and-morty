@@ -28,8 +28,7 @@ export const Characters = () => {
 
     return isNaN(storedPage) ? 1 : storedPage
   })
-
-  const [statusFilter, setStatusFilter] = useState<GetRequestType['status'] | undefined>(() => {
+  const [statusFilter, setStatusFilter] = useState<GetRequestType['status']>(() => {
     const storedStatus = localStorage.getItem('statusFilter')
 
     return storedStatus !== null ? (storedStatus as GetRequestType['status']) : undefined
@@ -44,6 +43,7 @@ export const Characters = () => {
 
     return storedGender !== null ? (storedGender as GetRequestType['gender']) : undefined
   })
+
   const gender = useAppSelector(selectorGender)
   const species = useAppSelector(selectorSpecies)
   const status = useAppSelector(selectorStatus)
@@ -58,35 +58,50 @@ export const Characters = () => {
 
   useEffect(() => {
     localStorage.setItem('currentCharactersPage', String(currentPage))
-    if (statusFilter !== undefined) {
-      localStorage.setItem('statusFilter', statusFilter)
-    } else {
-      localStorage.removeItem('statusFilter')
-    }
-    if (speciesFilter !== undefined) {
-      localStorage.setItem('speciesFilter', speciesFilter)
-    } else {
-      localStorage.removeItem('speciesFilter')
-    }
-    if (genderFilter !== undefined) {
-      localStorage.setItem('genderFilter', genderFilter)
-    } else {
-      localStorage.removeItem('genderFilter')
-    }
-  }, [currentPage, statusFilter, speciesFilter, genderFilter])
+  }, [currentPage])
 
   const handleSearch = (characterName: string) => {
     setSearchLocation(characterName)
     localStorage.setItem('characterName', characterName)
     setCurrentPage(1)
   }
-
   const handleResetFilters = () => {
     setSearchLocation('')
     setStatusFilter(undefined)
     setSpeciesFilter(undefined)
     setGenderFilter(undefined)
     setCurrentPage(1)
+  }
+  const statusChangeHandler = (value: GetRequestType['status']) => {
+    if (value !== undefined) {
+      setStatusFilter(value)
+      setCurrentPage(1)
+      localStorage.setItem('statusFilter', value)
+    } else {
+      setStatusFilter(undefined)
+      setCurrentPage(1)
+      localStorage.removeItem('statusFilter')
+    }
+  }
+  const speciesChangeHandler = (value: string | undefined) => {
+    setSpeciesFilter(value)
+    setCurrentPage(1)
+    if (value !== undefined) {
+      localStorage.setItem('speciesFilter', value)
+    } else {
+      localStorage.removeItem('speciesFilter')
+    }
+  }
+  const genderChangeHandler = (value: GetRequestType['gender']) => {
+    if (value !== undefined) {
+      setGenderFilter(value)
+      setCurrentPage(1)
+      localStorage.setItem('genderFilter', value)
+    } else {
+      setGenderFilter(undefined)
+      setCurrentPage(1)
+      localStorage.removeItem('genderFilter')
+    }
   }
 
   if (!characters || isLoading) {
@@ -98,24 +113,24 @@ export const Characters = () => {
       <Pages.Section>
         <Pages.NavBar>
           <STypography.H1>Characters</STypography.H1>
-          <Search onSearch={handleSearch} />
+          <Search initialValue={searchLocation} onSearch={handleSearch} />
           <Button onClick={handleResetFilters}>Reset Filters</Button>
           <Pages.Filter>
             <Pages.Select>
               <SuperSelect
-                onValueChange={setStatusFilter}
+                onValueChange={statusChangeHandler}
                 options={status}
                 placeholder={'Status'}
                 value={statusFilter}
               />
               <SuperSelect
-                onValueChange={setSpeciesFilter}
+                onValueChange={speciesChangeHandler}
                 options={species}
                 placeholder={'Species'}
                 value={speciesFilter}
               />
               <SuperSelect
-                onValueChange={setGenderFilter}
+                onValueChange={genderChangeHandler}
                 options={gender}
                 placeholder={'Gender'}
                 value={genderFilter}

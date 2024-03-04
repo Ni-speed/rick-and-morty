@@ -33,7 +33,7 @@ export type Character = {
 }
 
 export type GetRequestType = {
-  gender?: 'female' | 'genderless' | 'male' | 'unknown' | undefined
+  gender?: 'female' | 'genderless' | 'male' | 'unknown'
   id?: number | string[]
   name?: string
   page?: number

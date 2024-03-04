@@ -39,8 +39,8 @@ export const Locations = () => {
 
   useEffect(() => {
     localStorage.setItem('currentLocationsPage', String(currentPage))
-    localStorage.setItem('typeFilter', typeFilter)
-    localStorage.setItem('dimensionsFilter', dimensionsFilter)
+    // localStorage.setItem('typeFilter', typeFilter)
+    // localStorage.setItem('dimensionsFilter', dimensionsFilter)
   }, [currentPage, typeFilter, dimensionsFilter])
 
   const types = useAppSelector(selectorTypes)
@@ -64,6 +64,28 @@ export const Locations = () => {
     setDimensionsFilter('')
     setCurrentPage(1)
   }
+  const typeChangeHandler = (value: Location['type']) => {
+    if (value) {
+      setTypeFilter(value)
+      setCurrentPage(1)
+      localStorage.setItem('typeFilter', value)
+    } else {
+      setTypeFilter('')
+      setCurrentPage(1)
+      localStorage.removeItem('typeFilter')
+    }
+  }
+  const dimensionsChangeHandler = (value: Location['dimension']) => {
+    if (value) {
+      setDimensionsFilter(value)
+      setCurrentPage(1)
+      localStorage.setItem('dimensionsFilter', value)
+    } else {
+      setDimensionsFilter('')
+      setCurrentPage(1)
+      localStorage.removeItem('dimensionsFilter')
+    }
+  }
 
   if (!locations || isLoading) {
     return <div>Loading...</div>
@@ -80,13 +102,13 @@ export const Locations = () => {
           <Pages.Filter>
             <Button onClick={handleResetFilters}>Reset Filters</Button>
             <SuperSelect
-              onValueChange={setTypeFilter}
+              onValueChange={typeChangeHandler}
               options={types}
               placeholder={'Types'}
               value={typeFilter}
             />
             <SuperSelect
-              onValueChange={setDimensionsFilter}
+              onValueChange={dimensionsChangeHandler}
               options={dimensions}
               placeholder={'Dimensions'}
               value={dimensionsFilter}

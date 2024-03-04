@@ -18,26 +18,32 @@ import { Container } from '@/styles'
 import { Pages } from '@/styles/Pages.styled'
 
 export const Characters = () => {
-  const [searchLocation, setSearchLocation] = useState(localStorage.getItem('characterName') || '')
+  const [searchLocation, setSearchLocation] = useState(() => {
+    const storedName = localStorage.getItem('characterName')
+
+    return storedName !== null ? storedName : ''
+  })
   const [currentPage, setCurrentPage] = useState(() => {
     const storedPage = parseInt(localStorage.getItem('currentPage') || '', 10)
 
     return isNaN(storedPage) ? 1 : storedPage
   })
-  // const [statusFilter, setStatusFilter] = useState<GetRequestType['status']>(undefined)
-  // const [speciesFilter, setSpeciesFilter] = useState<string | undefined>(undefined)
-  // const [genderFilter, setGenderFilter] = useState<GetRequestType['gender']>(undefined)
-  const [statusFilter, setStatusFilter] = useState<GetRequestType['status'] | undefined>(
-    localStorage.getItem('statusFilter') as GetRequestType['status']
-  )
-  const [speciesFilter, setSpeciesFilter] = useState<string | undefined>(() => {
-    const storedValue = localStorage.getItem('speciesFilter')
 
-    return storedValue !== null ? storedValue : undefined
+  const [statusFilter, setStatusFilter] = useState<GetRequestType['status'] | undefined>(() => {
+    const storedStatus = localStorage.getItem('statusFilter')
+
+    return storedStatus !== null ? (storedStatus as GetRequestType['status']) : undefined
   })
-  const [genderFilter, setGenderFilter] = useState<GetRequestType['gender'] | undefined>(
-    localStorage.getItem('genderFilter') as GetRequestType['gender']
-  )
+  const [speciesFilter, setSpeciesFilter] = useState<string | undefined>(() => {
+    const storedSpecies = localStorage.getItem('speciesFilter')
+
+    return storedSpecies !== null ? storedSpecies : undefined
+  })
+  const [genderFilter, setGenderFilter] = useState<GetRequestType['gender'] | undefined>(() => {
+    const storedGender = localStorage.getItem('genderFilter')
+
+    return storedGender !== null ? (storedGender as GetRequestType['gender']) : undefined
+  })
   const gender = useAppSelector(selectorGender)
   const species = useAppSelector(selectorSpecies)
   const status = useAppSelector(selectorStatus)
@@ -52,9 +58,21 @@ export const Characters = () => {
 
   useEffect(() => {
     localStorage.setItem('currentPage', String(currentPage))
-    localStorage.setItem('statusFilter', statusFilter || '')
-    localStorage.setItem('speciesFilter', speciesFilter || '')
-    localStorage.setItem('genderFilter', genderFilter || '')
+    if (statusFilter !== undefined) {
+      localStorage.setItem('statusFilter', statusFilter)
+    } else {
+      localStorage.removeItem('statusFilter')
+    }
+    if (speciesFilter !== undefined) {
+      localStorage.setItem('speciesFilter', speciesFilter)
+    } else {
+      localStorage.removeItem('speciesFilter')
+    }
+    if (genderFilter !== undefined) {
+      localStorage.setItem('genderFilter', genderFilter)
+    } else {
+      localStorage.removeItem('genderFilter')
+    }
   }, [currentPage, statusFilter, speciesFilter, genderFilter])
 
   const handleSearch = (characterName: string) => {

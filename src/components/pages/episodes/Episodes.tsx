@@ -11,13 +11,13 @@ import { Container, Pages } from '@/styles'
 export const Episodes = () => {
   const [searchTerm, setSearchTerm] = useState(localStorage.getItem('episodeName') || '')
   const [currentPage, setCurrentPage] = useState(() => {
-    const storedPage = parseInt(localStorage.getItem('currentPage') || '', 10)
+    const storedPage = parseInt(localStorage.getItem('currentEpisodesPage') || '', 10)
 
     return isNaN(storedPage) ? 1 : storedPage
   })
 
   useEffect(() => {
-    localStorage.setItem('currentPage', String(currentPage))
+    localStorage.setItem('currentEpisodesPage', String(currentPage))
   }, [currentPage])
   const { data: episodes, isLoading } = useGetEpisodesQuery({ name: searchTerm, page: currentPage })
 

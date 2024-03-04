@@ -20,7 +20,7 @@ import { Pages } from '@/styles/Pages.styled'
 export const Locations = () => {
   const [searchName, setSearchName] = useState(localStorage.getItem('locationName') || '')
   const [currentPage, setCurrentPage] = useState(() => {
-    const storedPage = parseInt(localStorage.getItem('currentPage') || '', 10)
+    const storedPage = parseInt(localStorage.getItem('currentLocationsPage') || '', 10)
 
     return isNaN(storedPage) ? 1 : storedPage
   })
@@ -38,7 +38,7 @@ export const Locations = () => {
   }, [dispatch])
 
   useEffect(() => {
-    localStorage.setItem('currentPage', String(currentPage))
+    localStorage.setItem('currentLocationsPage', String(currentPage))
     localStorage.setItem('typeFilter', typeFilter)
     localStorage.setItem('dimensionsFilter', dimensionsFilter)
   }, [currentPage, typeFilter, dimensionsFilter])

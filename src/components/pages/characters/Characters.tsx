@@ -24,7 +24,7 @@ export const Characters = () => {
     return storedName !== null ? storedName : ''
   })
   const [currentPage, setCurrentPage] = useState(() => {
-    const storedPage = parseInt(localStorage.getItem('currentPage') || '', 10)
+    const storedPage = parseInt(localStorage.getItem('currentCharactersPage') || '', 10)
 
     return isNaN(storedPage) ? 1 : storedPage
   })
@@ -57,7 +57,7 @@ export const Characters = () => {
   })
 
   useEffect(() => {
-    localStorage.setItem('currentPage', String(currentPage))
+    localStorage.setItem('currentCharactersPage', String(currentPage))
     if (statusFilter !== undefined) {
       localStorage.setItem('statusFilter', statusFilter)
     } else {
